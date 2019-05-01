@@ -72,13 +72,8 @@ a.disabled {
     margin-right: 50px;
 }
 
-#menu{
-    float: left;
-}
-
 .menu {
     position: relative;
-    float: left;
 }
 
 .menuBtn {
@@ -112,10 +107,6 @@ a.disabled {
 .menu:hover .menuList {display: block;}
 
 .menu:hover .menuBtn {background-color: #83a561;}
-
-#user{
-    float: right;
-}
 
 #user .menuBtn {
     text-align: center;
@@ -267,11 +258,6 @@ a.disabled {
 
 .tableAction input{
     margin: 0px;
-    /* float: left; */
-}
-
-.tableAction input:last-child{
-    /* float: right; */
 }
 
 .action input.CUD  {

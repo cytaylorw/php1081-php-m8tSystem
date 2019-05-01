@@ -4,15 +4,15 @@
         <?php
             if(!empty($_SESSION['login'])){
         ?>
-        <div id="menu">
-            <div class="menu">
+        <div id="menu" >
+            <div class="menu floatL">
                 <div class="menuBtn">報告</div>
                 <div class="menuList">
                     <a href="">產品銷售狀況</a>
                     <a href="">業務部銷售狀況</a>
                 </div>
             </div>
-            <div class="menu">
+            <div class="menu floatL">
                 <div class="menuBtn">管理</div>
                 <div class="menuList">
                     <a href="<?php echo getDirR("manage",$contentDir,$dir); ?>products.php">產品管理</a>
@@ -25,8 +25,8 @@
             }
         ?>
     </div>
-    <div id="user">
-            <div class="menu">
+    <div id="user" class="floatR">
+            <div class="menu floatL">
                 <div class="menuBtn">
                     <?php
                         if(empty($_SESSION['login'])){
