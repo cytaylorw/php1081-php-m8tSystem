@@ -4,13 +4,13 @@
     $subDir = true;
     session_start();
     if(empty($_SESSION['login'])){
-        // header("location:".getRootR($contentDir,$dir)."index.php");
+        header("location:".getRootR($contentDir,$dir)."index.php");
     }
     if(empty($_POST)){
    
-        // $pdo=dbconnect();
-        // $sql="SELECT * FROM employee;";
-        // $list=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+        $pdo=dbconnect();
+        $sql="SELECT * FROM employee;";
+        $list=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 
     }else{
 
