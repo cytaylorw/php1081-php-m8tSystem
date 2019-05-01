@@ -1,6 +1,7 @@
 <?php
     $contentDir = ['common', 'manage', 'report'];
     $dir = explode('/',str_replace($_SERVER['DOCUMENT_ROOT'],'',$_SERVER['SCRIPT_FILENAME']));
+    $file = $dir[(count($dir)-1)];
     unset($dir[(count($dir)-1)]);
     unset($dir[0]);
 
