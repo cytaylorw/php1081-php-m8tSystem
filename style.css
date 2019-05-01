@@ -28,6 +28,14 @@ a.disabled {
     pointer-events: none;
 }
 
+.floatL {
+    float: left;
+}
+
+.floatR {
+    float: right;
+}
+
 .msg{
     color: red;
 }
@@ -259,11 +267,19 @@ a.disabled {
 
 .tableAction input{
     margin: 0px;
-    float: left;
+    /* float: left; */
 }
 
 .tableAction input:last-child{
-    float: right;
+    /* float: right; */
 }
 
+.action input.CUD  {
+    background-color: #48723e;
+    color: white;
+}
 
+.action input:hover  {
+    color:  white;
+    background-color: #83a561;
+}

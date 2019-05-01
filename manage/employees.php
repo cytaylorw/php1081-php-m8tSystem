@@ -8,9 +8,9 @@
     }
     if(empty($_POST)){
    
-        $pdo=dbconnect();
-        $sql="SELECT * FROM employee;";
-        $list=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+        // $pdo=dbconnect();
+        // $sql="SELECT * FROM employee;";
+        // $list=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 
     }else{
 
@@ -39,10 +39,15 @@
                 </div>
                 <div class="filterTable">
                     <div class="action tableAction">
-                        <input type="button" name="add" value="新增">
-                        <input type="button" value="編輯">
-                        <input type="button" value="刪除">
-                        <input type="button" value="搜尋">
+                        <div class="floatL">
+                            <input class="CUD floatL" type="submit" name="add" value="新增">
+                            <input class="CUD floatL" type="submit" name="edit" value="編輯">
+                            <input class="CUD floatL" type="submit" name="delete" value="刪除">
+                        </div>
+                        <div class="floatR">
+                            <input class="floatL" type="submit" name="filter" value="搜尋">
+                            <input class="floatL" type="reset" value="清除">
+                        </div>
                     </div>
                 </div>
             </div>
