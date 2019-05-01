@@ -1,9 +1,10 @@
 <?php
     include_once "../common/sql.php";
+    include_once "../common/dir.php";
     $subDir = true;
     session_start();
     if(empty($_SESSION['login'])){
-        header("location:index.php");
+        // header("location:".getRootR($contentDir,$dir)."index.php");
     }
     if(empty($_POST)){
    

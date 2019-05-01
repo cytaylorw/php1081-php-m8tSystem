@@ -15,9 +15,9 @@
             <div class="menu">
                 <div class="menuBtn">管理</div>
                 <div class="menuList">
-                    <a href="<?php if(!$subDir) echo "manage/"; ?>products.php">產品管理</a>
-                    <a href="<?php if(!$subDir) echo "manage/"; ?>employees.php">員工管理</a>
-                    <a href="<?php if(!$subDir) echo "manage/"; ?>customers.php">客戶管理</a>
+                    <a href="<?php echo getDirR("manage",$contentDir,$dir); ?>products.php">產品管理</a>
+                    <a href="<?php echo getDirR("manage",$contentDir,$dir); ?>employees.php">員工管理</a>
+                    <a href="<?php echo getDirR("manage",$contentDir,$dir); ?>customers.php">客戶管理</a>
                 </div>
             </div>
         </div>
@@ -40,12 +40,12 @@
                 <?php
                     if(empty($_SESSION['login'])){
                 ?>
-                    <a href="<?php if($subDir) echo "../"; ?>index.php">登入</a>
-                    <a href="<?php if($subDir) echo "../"; ?>register.php">註冊</a>
+                    <a href="<?php echo getRootR($contentDir,$dir);?>index.php">登入</a>
+                    <a href="<?php echo getRootR($contentDir,$dir);?>register.php">註冊</a>
                 <?php
                     }else{
                 ?>
-                <a href="logout.php">登出</a>
+                <a href="<?php echo getRootR($contentDir,$dir);?>logout.php">登出</a>
                 <?php
                     }
                 ?>

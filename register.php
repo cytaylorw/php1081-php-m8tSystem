@@ -1,5 +1,6 @@
 <?php
     include_once "./common/sql.php";
+    include_once "./common/dir.php";
     $subDir = false;
     session_start();
     if(!empty($_POST)){
