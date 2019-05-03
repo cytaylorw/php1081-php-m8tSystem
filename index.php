@@ -1,7 +1,6 @@
 <?php
     include_once "./common/sql.php";
     include_once "./common/dir.php";
-    $subDir = false;
     session_start();
     if(empty($_SESSION['login']) && !empty($_POST)){
         //登入驗證

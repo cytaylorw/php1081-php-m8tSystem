@@ -21,9 +21,9 @@
 
     function getDirR($dir_name,$contentDir,$dir){
         if(in_array($dir_name,$dir)){
-            return getRootR($contentDir,$dir).$dir_name."/";
+            return "./";
         }else{
-            echo $dir_name.' is not in the array of $contentDir.';
+            return getRootR($contentDir,$dir).$dir_name."/";            
         }
     }
 
