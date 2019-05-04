@@ -11,7 +11,7 @@
     $bodyJS="clear.js";
     $colKey=array_keys($col);
     $colName=array_values($col);
-    $pageLimit=20;
+    $pageLimit=18;
 
     if(empty($_SESSION['login'])){
         header("location:".getRootR($contentDir,$dir)."index.php");
@@ -69,16 +69,16 @@
         }
     }
     
-    if(empty($_GET) || empty($_GET['page'])){
-        $_SESSION[$table.'_query_page']=$page=1;
+    if(empty($_GET) || !isset($_GET['page'])){
+        $_SESSION[$table.'_query_page']=1;
+        
     }else{
         if($_GET['page']>0 && $_GET['page']<=$_SESSION[$table.'_query_pages']){
-            $_SESSION[$table.'_query_page']=$page=$_GET['page'];
-        }else{
-            $page=$_SESSION[$table.'_query_page'];
-        }
-        
-    }  
+            $_SESSION[$table.'_query_page']=$_GET['page'];
+        }        
+    }
+    
+    $page=$_SESSION[$table.'_query_page'];
     $list=array_chunk($_SESSION[$table.'_query'],$pageLimit)[($page-1)];
     $lastPg=$_SESSION[$table.'_query_pages'];
 ?>
