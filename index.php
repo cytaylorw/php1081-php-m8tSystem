@@ -28,20 +28,8 @@
     }
 
 ?>
+<?php include_once "./common/base_start.php"; ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <title><?=$pgName?></title>
-</head>
-<body>
-    <div class="wrap">
-        <?php include "./common/header.php"; ?>
-        <div id="content">
             <?php 
                 if(empty($_SESSION['login'])){
                     // 未登入顯示登入畫面
@@ -85,9 +73,5 @@
             <?php
                 }
             ?>
-        </div>
-        <?php include "./common/footer.php"; ?>
-    </div>
-    
-</body>
-</html>
+
+<?php include_once "./common/base_end.php"; ?>

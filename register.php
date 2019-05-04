@@ -26,19 +26,8 @@
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <title><?=$pgName?></title>
-</head>
-<body>
-    <div class="wrap">
-        <?php include "./common/header.php"; ?>
-        <div id="content">
+<?php include_once "./common/base_start.php"; ?>
+
             <form action="register.php".php" method="post">
                 <div id="register" class="inputBox">
                     <div class="msg">
@@ -66,9 +55,4 @@
                 </div>
             </form>
             
-        </div>
-        <?php include "./common/footer.php"; ?>
-    </div>
-    
-</body>
-</html>
+<?php include_once "./common/base_end.php"; ?>

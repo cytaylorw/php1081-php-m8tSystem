@@ -6,15 +6,15 @@
     $col=["eid"=>"員工編號","ename"=>"姓名","title"=>"現任職稱","dept"=>"部門代號","tel"=>"電話"];
     $table="employee";
     $pgName='員工管理';
-
-    if(empty($_SESSION['login'])){
-        header("location:".getRootR($contentDir,$dir)."index.php");
-    }
     
+    $bodyJS="clear.js";
     $colKey=array_keys($col);
     $colName=array_values($col);
     $pageLimit=20;
-    
+
+    if(empty($_SESSION['login'])){
+        header("location:".getRootR($contentDir,$dir)."index.php");
+    }    
 
     if(!empty($_POST)){   
         if(isset($_POST["add"])){
@@ -82,25 +82,14 @@
     $lastPg=$_SESSION[$table.'_query_pages'];
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../style.css">
-    <title><?=$pgName?></title>
-</head>
-<body>
-    <div class="wrap">
-        <?php include "../common/header.php"; ?>
-        <div id="content">
+<?php include_once getDirR("common",$contentDir,$dir)."base_start.php"; ?>
+
             <div class="wrap">
                 <div class="filterTable">
                 <form id="cud" action="<?php echo $file;?>" method="post">
                     <div class="action tableAction">
                         <div class="path floatL">
-                            <a href="../index.php">首頁</a>
+                            <a href="<?php echo getRootR($contentDir,$dir);?>index.php">首頁</a>
                             <span>&nbsp;>&nbsp;</span>
                             <a href="<?php echo $file;?>" class="active"><?=$pgName?></a>
                         </div>
@@ -203,11 +192,5 @@
                     
                 </div>
             </div>
-        </div>
-        <?php include "../common/footer.php"; ?>
-    </div>
-    <script src="clear.js">
-    </script>
 
-</body>
-</html>
+<?php include_once getDirR("common",$contentDir,$dir)."base_end.php"; ?>
