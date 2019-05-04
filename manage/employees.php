@@ -48,10 +48,10 @@
     }
 
     if(checkEmployeeExpire($time)){
-        $sql=filterTableSelect($colName, $table);
+        $sql=sqlSelect($colName, $table);
     }
     if(isset($where)){
-        $sql=filterTableSelect($colName, $table, $where);
+        $sql=sqlSelect($colName, $table, $where);
     }
     
     if(isset($sql)){

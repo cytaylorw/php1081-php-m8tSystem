@@ -2,13 +2,16 @@
     include_once "./common/sql.php";
     include_once "./common/dir.php";
     session_start();
+    $pgName='產品銷售管理系統';
     if(empty($_SESSION['login']) && !empty($_POST)){
         //登入驗證
         $pdo=dbconnect();
-        $sql="SELECT * FROM user u WHERE u.username='".$_POST['username']."' && u.password='". $_POST['password'] . "';";
+        $col=["username","password"];
+        $value=[$_POST['username'],$_POST['password']];
+        $sql=sqlSelect("*","user",whereEqual($col,$value));
         $user=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
         if($user){
-            $sql="SELECT * FROM employee WHERE 員工編號='". $user['eid'] . "';";
+            $sql=sqlSelect("*","employee",whereEqual("員工編號",$user['eid']));
             $info=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
             if($info){
                 $_SESSION['login']=true;
@@ -33,7 +36,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <title>產品銷售管理系統</title>
+    <title><?=$pgName?></title>
 </head>
 <body>
     <div class="wrap">

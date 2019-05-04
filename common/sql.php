@@ -6,7 +6,7 @@
         return $pdo;
     }
     
-    function filterTableSelect($col, $table, $where=null){
+    function sqlSelect($col, $table, $where=null){
         $sql="SELECT ";
         if(is_array($col)){
             $lastKey=array_keys($col)[count($col)-1];
@@ -23,6 +23,29 @@
         if(!empty($where)){
             $sql=$sql." WHERE ".$where;
         }
-        return $sql;
+        return $sql.";";;
+    }
+
+    function whereEqual($col,$value){
+        if(is_array($col)){
+            $where=[];
+            foreach($col as $key => $c){
+                if(!empty($c)){
+                    array_push($where,$c."='".$value[$key]."'");
+                }
+            }
+            return implode($where," && ");
+        }else{
+            return $col."='".$value."'";
+        }   
+    } 
+
+    function sqlInsert($table,$col,$value){
+        $sql="INSERT INTO ".$table."(".implode($col,",").") VALUES (";
+        $tmp=[];
+        foreach ($value as $v){
+            array_push($tmp,"'".$v."'");
+        }
+        return $sql.implode($tmp,",").");";
     }
 ?>
