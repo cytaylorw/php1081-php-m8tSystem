@@ -6,7 +6,8 @@
     $col=["eid"=>"員工編號","ename"=>"姓名","title"=>"現任職稱","dept"=>"部門代號","tel"=>"電話"];
     $table="employee";
     $pgName='員工管理';
-    
+    $cud=['c'=>true,'u'=>true,'d'=>true];
+
     $bodyJS="clear.js";
     $colKey=array_keys($col);
     $colName=array_values($col);
@@ -93,11 +94,11 @@
                             <span>&nbsp;>&nbsp;</span>
                             <a href="<?php echo $file;?>" class="active"><?=$pgName?></a>
                         </div>
-                        <div class="floatR">                            
+                        <div class="floatR borderR-TR">                            
                             <div class="floatL">                                
-                                <input class="CUD floatL" type="submit" name="add" value="新增">
-                                <input class="CUD floatL" type="submit" name="edit" value="編輯">
-                                <input class="CUD floatL borderR-TR" type="submit" name="delete" value="刪除">
+                                <input class="CUD floatL<?php if(!$cud['c']) echo " hidden";?>" type="submit" name="add" value="新增">
+                                <input class="CUD floatL<?php if(!$cud['u']) echo " hidden";?>" type="submit" name="edit" value="編輯">
+                                <input class="CUD floatL<?php if(!$cud['d']) echo " hidden";?>" type="submit" name="delete" value="刪除">
                             </div>
                         </div>
                         
