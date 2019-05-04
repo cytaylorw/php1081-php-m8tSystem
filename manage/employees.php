@@ -8,7 +8,7 @@
     $pgName='員工管理';
     $cud=['c'=>true,'u'=>true,'d'=>true];
 
-    $bodyJS=["clear.js","search.js"];
+    $bodyJS=["clear.js","search.js","selectRadio.js"];
     $colKey=array_keys($col);
     $colName=array_values($col);
     $pageLimit=18;
@@ -87,7 +87,7 @@
 
             <div class="wrap">
                 <div class="filterTable">
-                <form id="cud" action="<?php echo $file;?>" method="post">
+                <form id="cud" name="cud" action="<?php echo $file;?>" method="post">
                     <div class="action tableAction">
                         <div class="path floatL">
                             <a href="<?php echo getRootR($contentDir,$dir);?>index.php">首頁</a>
@@ -97,8 +97,8 @@
                         <div class="floatR borderR-TR">                            
                             <div class="floatL">                                
                                 <input class="CUD floatL<?php if(!$cud['c']) echo " hidden";?>" type="submit" name="add" value="新增">
-                                <input class="CUD floatL<?php if(!$cud['u']) echo " hidden";?>" type="submit" name="edit" value="編輯">
-                                <input class="CUD floatL<?php if(!$cud['d']) echo " hidden";?>" type="submit" name="delete" value="刪除">
+                                <input class="CUD floatL<?php if(!$cud['u']) echo " hidden";?>" type="submit" name="edit" value="編輯" disabled>
+                                <input class="CUD floatL<?php if(!$cud['d']) echo " hidden";?>" type="submit" name="delete" value="刪除" disabled>
                             </div>
                         </div>
                         
