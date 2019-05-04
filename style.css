@@ -1,11 +1,15 @@
 :root{
     --header-height: 60px;
+    --footer-height: 40px;
+    --content-padding: 20px;
+    --content-padding-top: calc(var(--content-padding) + var(--header-height));
+    --content-wrap-min-height: calc(100vh - var(--content-padding-top)  - var(--content-padding) - var(--footer-height));
 }
 
 
 *{
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 18px;
     font-family: "微軟正黑體", Arial, Helvetica, sans-serif;
     padding: 0;
     margin: 0;
@@ -18,7 +22,7 @@ html, body{
 
 .wrap{
     width: 100%;
-    height:100%;
+    min-height: 100vh;
     margin: auto;
 }
 
@@ -64,12 +68,11 @@ input[type='text'], input[type='password'] {
 }
 
 #content{
-    clear: both;
     width: 100%;
-    height: calc(100%  - 40px);
+    min-height: calc(100vh - var(--footer-height));
     background-color:  #eeeedd;
-    padding: 20px;
-    padding-top: calc(20px + var(--header-height));
+    padding: var(--content-padding);
+    padding-top: var(--content-padding-top);
     text-align: center;
     display: flex;
     justify-content: center;
@@ -92,7 +95,7 @@ input[type='text'], input[type='password'] {
     width: auto;
     height: var(--header-height);
     padding: 15px;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     float: left;
     margin-left: 10px;
@@ -109,7 +112,6 @@ input[type='text'], input[type='password'] {
     padding: 19px;
     height: var(--header-height);
     min-width: 80px;
-    font-size: 16px;
     border: none;
 }
 
@@ -148,7 +150,7 @@ input[type='text'], input[type='password'] {
 #footer{
     background-color:  #83a561;
     width: 100%;
-    height: 40px;
+    height: var(--footer-height);
     text-align: center;
     display: flex;
     justify-content: center;
@@ -166,7 +168,6 @@ input[type='text'], input[type='password'] {
     background-color:  rgb(73, 116, 62, 0.4);
     padding: 50px;
     padding-bottom: 0;
-    font-size: 16px;
     border: 0px;
     border-radius: 30px;
     filter: drop-shadow(10px 10px 3px rgb(73, 116, 62, 0.4));
@@ -218,7 +219,6 @@ input[type='text'], input[type='password'] {
     height: 40px;
     min-width: 80px;
     margin:30px;
-    font-size: 16px;
     border: none;
 }
 
@@ -230,6 +230,7 @@ input[type='text'], input[type='password'] {
 #content .wrap{
     background-color: rgb(26, 71, 24, 0.1);
     border-radius: 10px;
+    min-height: var(--content-wrap-min-height);
 }
 
 .welcome {
@@ -270,7 +271,7 @@ input[type='text'], input[type='password'] {
 .filterTable {
     display: inline-block;
     width: 100%;
-    height: 100%;
+    height: var(--content-wrap-min-height);
     border-radius: 0px 0px 10px 10px;
 }
 
@@ -317,6 +318,7 @@ form#cud{
     border: none;
     padding: 5px;
     background-color: #bfdb81;
+    color: dimgray;
 }
 
 .tableContent input[type='submit']:hover, 
@@ -359,6 +361,7 @@ form#cud{
 
 .thRow .tableCell{
     font-weight: bold;
+    text-shadow: 1px 1px white;
     border: none;
     background-image: linear-gradient(to bottom right, #bfdb81, transparent);
 }
