@@ -38,7 +38,7 @@ a.active {
     pointer-events: none;
 }
 
-input[type='text'], input[type='password'] {
+input[type='text'], input[type='password'], input[type='number'] {
     background-color:  #eeeedd;
     border: none;
 }
@@ -384,7 +384,7 @@ form#cud{
     margin: 0px;
 }
 
-.pgNav input[type='text'] {
+.pgNav input[type='number'] {
     margin: 0px 10px 0px 10px;
     text-align: center;
 }

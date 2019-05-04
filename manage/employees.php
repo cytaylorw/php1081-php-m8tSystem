@@ -8,7 +8,7 @@
     $pgName='員工管理';
     $cud=['c'=>true,'u'=>true,'d'=>true];
 
-    $bodyJS="clear.js";
+    $bodyJS=["clear.js","search.js"];
     $colKey=array_keys($col);
     $colName=array_values($col);
     $pageLimit=18;
@@ -77,7 +77,7 @@
             $_SESSION[$table.'_query_page']=$_GET['page'];
         }        
     }
-    
+
     $page=$_SESSION[$table.'_query_page'];
     $list=array_chunk($_SESSION[$table.'_query'],$pageLimit)[($page-1)];
     $lastPg=$_SESSION[$table.'_query_pages'];
@@ -175,7 +175,7 @@
                                             echo "<div class='pgLink' style='visibility: hidden'>上一頁</div>";
                                         }
                                     ?>                         
-                                    <input type="text" name="page" size="3" value="<?php echo $page;?>" <?php if($_SESSION['employee_query_pages']==1) echo "disabled";?>>
+                                    <input type="number" name="page" min="1" max="<?php echo $_SESSION['employee_query_pages'];?>" value="<?php echo $page;?>" <?php if($_SESSION['employee_query_pages']==1) echo "disabled";?>>
                                     <input type="submit" style="display: none">
                                     <?php 
                                         if($page != $lastPg){   
