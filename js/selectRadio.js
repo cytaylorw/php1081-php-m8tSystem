@@ -1,4 +1,5 @@
 let radios = document.cud.tableRadio;
+
 for(let i=0;i<radios.length;i++){
     radios[i].addEventListener('change', function(event) {
         if (radios.value != "") {
