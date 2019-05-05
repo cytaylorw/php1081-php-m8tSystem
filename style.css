@@ -165,12 +165,12 @@ input[type='text'], input[type='password'], input[type='number'] {
 }
 
 .inputBox {
-    background-color:  rgb(73, 116, 62, 0.4);
+    background-color:  rgba(73, 116, 62, 0.4);
     padding: 50px;
     padding-bottom: 0;
     border: 0px;
     border-radius: 30px;
-    filter: drop-shadow(10px 10px 3px rgb(73, 116, 62, 0.4));
+    filter: drop-shadow(10px 10px 3px rgba(73, 116, 62, 0.4));
 }
 
 .msg {
@@ -180,7 +180,7 @@ input[type='text'], input[type='password'], input[type='number'] {
 }
 
 .inputRow {
-    background-color:  rgb(238, 238, 221, 0.5);
+    background-color:  rgba(238, 238, 221, 0.5);
     height: 50px;
     padding: 13px;
 }
@@ -228,13 +228,13 @@ input[type='text'], input[type='password'], input[type='number'] {
 }
 
 #content .wrap{
-    background-color: rgb(26, 71, 24, 0.1);
+    background-color: rgba(26, 71, 24, 0.1);
     border-radius: 10px;
     min-height: var(--content-wrap-min-height);
 }
 
 .welcome {
-    background-color: rgb(72, 114, 62, 0.3);
+    background-color: rgba(72, 114, 62, 0.3);
     text-align: center;
     display: flex;
     justify-content: center;
@@ -303,13 +303,13 @@ form#cud{
 }
 
 .filterTable input[disabled] {
-    background-color: rgb(128, 128, 128, 0.5);
+    background-color: rgba(128, 128, 128, 0.5);
 }
 
 .tableWrap {
     width: 100%;
     height: calc(100% - 40px);
-    background-color: rgb(238, 238, 221, 0.5);
+    background-color: rgba(238, 238, 221, 0.5);
     overflow: auto;
 }
 
@@ -359,7 +359,7 @@ form#cud{
 
 .tableCell {
     display: table-cell;
-    border: 1px solid rgb(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     padding: 5px;
 }
 
@@ -379,7 +379,7 @@ form#cud{
     height: 35px;
     display: inline-flex;
     align-items: center;
-    background-color: rgb(234, 230, 158, 0.5);
+    background-color: rgba(234, 230, 158, 0.5);
     border-radius: 0px 0px 10px 10px;
 }
 
@@ -401,3 +401,10 @@ form#cud{
     color: #1a4718;
 }
 
+#cud.inputBox .inputRow .label{
+    width: 150px;
+}
+
+#cud.inputBox .inputRow .input{
+    width: 300px;
+}
