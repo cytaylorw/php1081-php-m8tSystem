@@ -15,8 +15,5 @@ for(let i=0;i<radios.length;i++){
 if (radios.value != "") {
     document.cud.edit.disabled = false;
     document.cud.delete.disabled = false;
-}else{
-    document.cud.edit.disabled = true;
-    document.cud.delete.disabled = true;
 }
 
