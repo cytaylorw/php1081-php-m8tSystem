@@ -48,4 +48,38 @@
         }
         return $sql.implode($tmp,",").");";
     }
+
+    function sqlUpdate($table,$new,$where){
+        $sql="UPDATE ".$table." SET ";
+        $set=[];
+        foreach ($new as $n){
+            array_push($set,array_keys($n)[0]."='".array_values($n)[0]."'");
+        }
+        $sql=$sql.implode($set,",")." WHERE ".$where;
+        return $sql;
+    }
+
+    function sqlDelete($table,$where){
+        return "DELETE FROM ".$table." WHERE ".$where;
+    }
+
+    function getPostValues($keys){
+        $values=[];
+        foreach($keys as $k){
+            array_push($values,$_POST[$k]);
+        }
+        return $values;
+    }
+
+    function getPostDiffValues($col,$old){
+        $new=[];
+        // print_r($keys);
+        // print_r($old);
+        foreach($col as $key => $c){
+            if($_POST[$key] != $old[$c]){
+                array_push($new,[$c => $_POST[$key]]);
+            }
+        }
+        return $new;
+    }
 ?>

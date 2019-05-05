@@ -405,6 +405,6 @@ form#cud{
     width: 150px;
 }
 
-#cud.inputBox .inputRow .input{
-    width: 300px;
+#cud.inputBox .inputRow input{
+    width: 400px;
 }

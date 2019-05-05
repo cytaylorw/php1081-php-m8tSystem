@@ -1,13 +1,15 @@
 <?php
-    include_once "../common/sql.php";
-    include_once "../common/dir.php";
-    include_once "../common/session.php";
-
+    
     $col=["eid"=>"員工編號","ename"=>"姓名","title"=>"現任職稱","dept"=>"部門代號","tel"=>"電話"];
     $table="employee";
     $pgName='員工管理';
     $cud=['c'=>true,'u'=>true,'d'=>true];
+    
+    include_once "../common/sql.php";
+    include_once "../common/dir.php";
+    include_once "../common/session.php";
 
+    $action=['c'=>"add",'u'=>"edit",'d'=>"delete"];
     $bodyJS=["clear.js","search.js","selectRadio.js"];
     $colKey=array_keys($col);
     $colName=array_values($col);
@@ -19,16 +21,16 @@
 
     if(!empty($_POST)){   
         if(isset($_POST["add"])){
-            header("location:".$table.".php?action=add");
+            header("location:".$table.".php?action=".$action['c']);
         }else if(isset($_POST["edit"])){
             if(isset($_POST["tableRadio"])){
                 // add cookies
-                header("location:".$table.".php?action=edit&tableRadio=".$_POST["tableRadio"]);
+                header("location:".$table.".php?action=".$action['u']."&tableRadio=".$_POST["tableRadio"]);
             }
         }else if(isset($_POST["delete"])){
             if(isset($_POST["tableRadio"])){
                 // add cookies
-                header("location:".$table.".php?action=delete&tableRadio=".$_POST["tableRadio"]);
+                header("location:".$table.".php?action=".$action['d']."&tableRadio=".$_POST["tableRadio"]);
             }
         }else if(isset($_POST["search"])){
             $where=[];
@@ -48,7 +50,7 @@
         }
     }
 
-    if(checkSessionExpire($time,$table.'_last_query',$timeout_duration)){
+    if(checkSessionExpire($time,$table.'_last_query',$timeout_duration) || isset($_GET['action'])){
         $sql=sqlSelect($colName, $table);
     }
     if(isset($where)){
@@ -65,6 +67,10 @@
                 $_SESSION[$table.'_query']=$query->fetchAll(PDO::FETCH_ASSOC);
                 $_SESSION[$table.'_query_count']=$listNum;
                 $_SESSION[$table.'_query_pages']=ceil($listNum/$pageLimit);
+            }else{
+                unset($_SESSION[$table.'_query']);
+                $_SESSION[$table.'_query_count']=0;
+                $_SESSION[$table.'_query_pages']=0;
             }
         }
     }
@@ -77,8 +83,13 @@
             $_SESSION[$table.'_query_page']=$_GET['page'];
         }        
     }
+    if(isset($_GET['action']) && $_GET['action']==$action['c']){
+        $_SESSION[$table.'_query_page']=$_SESSION[$table.'_query_pages'];
+    }
     $page=$_SESSION[$table.'_query_page'];
-    $list=array_chunk($_SESSION[$table.'_query'],$pageLimit)[($page-1)];
+    if(isset($_SESSION[$table.'_query'])){
+        $list=array_chunk($_SESSION[$table.'_query'],$pageLimit)[($page-1)];
+    }
     $lastPg=$_SESSION[$table.'_query_pages'];
 ?>
 
@@ -137,8 +148,9 @@
                                     ?>
                                 </div>
                                 <div class="tableList">
-                                <?php
-                                    foreach($list as $row){
+                                <?php 
+                                    if(isset($list)){
+                                        foreach($list as $row){
                                 ?>
                                 <div class="listRow">
                                     <?php
@@ -153,7 +165,9 @@
                                         ?>
                                 </div>
                                 <?php
-                                }
+                                    }}else{
+                                        echo "<div class='tableCell'>查無資料</div>";
+                                    }
                                 ?>
                                 </div>
                             
@@ -174,7 +188,7 @@
                                             echo "<div class='pgLink' style='visibility: hidden'>上一頁</div>";
                                         }
                                     ?>                         
-                                    <input type="number" name="page" min="1" max="<?php echo $_SESSION['employee_query_pages'];?>" value="<?php echo $page;?>" <?php if($_SESSION['employee_query_pages']==1) echo "disabled";?>>
+                                    <input type="number" name="page" min="1" max="<?php echo $_SESSION['employee_query_pages'];?>" value="<?php echo $page;?>" <?php if($_SESSION['employee_query_pages']<2) echo "disabled";?>>
                                     <input type="submit" style="display: none">
                                     <?php 
                                         if($page != $lastPg){   
