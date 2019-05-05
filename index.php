@@ -1,7 +1,8 @@
 <?php
     include_once "./common/sql.php";
     include_once "./common/dir.php";
-    session_start();
+    include_once "./common/session.php";
+
     $pgName='產品銷售管理系統';
     if(empty($_SESSION['login']) && !empty($_POST)){
         //登入驗證
@@ -14,6 +15,7 @@
             $sql=sqlSelect("*","employee",whereEqual("員工編號",$user['eid']));
             $info=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
             if($info){
+                clearSession();
                 $_SESSION['login']=true;
                 $_SESSION['username']=$user['username'];
                 $_SESSION['eid']=$info['員工編號'];

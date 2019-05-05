@@ -1,10 +1,10 @@
 <?php
 session_start();
 $time = $_SERVER['REQUEST_TIME'];
-
-function checkEmployeeExpire($time){
-    return checkSessionExpire($time,'EMPLOYEE_LAST_QUERY',300);
-}
+$timeout_duration = 300;
+// function checkEmployeeExpire($time){
+//     return checkSessionExpire($time,'EMPLOYEE_LAST_QUERY',300);
+// }
 
 
 function checkSessionExpire($time,$sname,$timeout_duration){
@@ -14,5 +14,16 @@ function checkSessionExpire($time,$sname,$timeout_duration){
     }
     $_SESSION[$sname] = $time;
     return $expire;
+}
+
+function clearSession(){
+    if(!empty($_SESSION)){
+        foreach( array_keys($_SESSION) as $key){
+            unset($_SESSION[$key]);
+        }
+        // foreach($_SESSION as $s){
+        //     unset($s);
+        // }
+    }
 }
 ?>

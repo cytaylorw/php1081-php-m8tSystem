@@ -48,7 +48,7 @@
         }
     }
 
-    if(checkEmployeeExpire($time)){
+    if(checkSessionExpire($time,$table.'_last_query',$timeout_duration)){
         $sql=sqlSelect($colName, $table);
     }
     if(isset($where)){
@@ -77,7 +77,6 @@
             $_SESSION[$table.'_query_page']=$_GET['page'];
         }        
     }
-
     $page=$_SESSION[$table.'_query_page'];
     $list=array_chunk($_SESSION[$table.'_query'],$pageLimit)[($page-1)];
     $lastPg=$_SESSION[$table.'_query_pages'];

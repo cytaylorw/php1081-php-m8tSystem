@@ -1,8 +1,6 @@
 <?php
     include_once "./common/dir.php";
-    session_start();
-    foreach( array_keys($_SESSION) as $key){
-        unset($_SESSION[$key]);
-    }
+    include_once "./common/session.php";
+    clearSession();
     header("location:".getRootR($contentDir,$dir)."index.php");
 ?>
