@@ -1,7 +1,8 @@
 <?php
     include_once "./common/sql.php";
     include_once "./common/dir.php";
-    session_start();
+    include_once "./common/session.php";
+    
     $pgName='註冊帳號';
     if(!empty($_POST)){
         $pdo=dbconnect();
@@ -28,7 +29,7 @@
 
 <?php include_once "./common/base_start.php"; ?>
 
-            <form action="register.php".php" method="post">
+            <form action="register.php" method="post">
                 <div id="register" class="inputBox">
                     <div class="msg">
                         <?php
