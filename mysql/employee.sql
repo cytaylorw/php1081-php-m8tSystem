@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2019-05-03 16:06:02
+-- 產生時間： 2019-05-06 14:56:11
 -- 伺服器版本： 10.1.38-MariaDB
 -- PHP 版本： 7.3.3
 
@@ -162,7 +162,7 @@ ALTER TABLE `employee`
 -- 使用資料表自動增長(AUTO_INCREMENT) `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `員工編號` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `員工編號` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
