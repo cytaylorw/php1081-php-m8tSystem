@@ -6,7 +6,7 @@
     $types=["pname"=>"text","pno"=>"text","price"=>"number","cost"=>"number"];
     $table="product";
 
-    include_once "../common/cud_base.php";
+    include_once "../layout/cud_base.php";
 
     
 ?>

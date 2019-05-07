@@ -1,5 +1,5 @@
 <?php
-    $contentDir = ['common', 'manage', 'report','js'];
+    $contentDir = ['common', 'manage', 'report','js','layout'];
     $dir = explode('/',str_replace($_SERVER['DOCUMENT_ROOT'],'',$_SERVER['SCRIPT_FILENAME']));
     $file = $dir[(count($dir)-1)];
     unset($dir[(count($dir)-1)]);

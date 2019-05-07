@@ -6,6 +6,6 @@
     $cud=['c'=>true,'u'=>true,'d'=>true];
     $action=['c'=>"add",'u'=>"edit",'d'=>"delete"];
 
-    include_once "../common/manage_base.php";
+    include_once "../layout/manage_base.php";
     
 ?>

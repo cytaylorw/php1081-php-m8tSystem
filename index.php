@@ -30,7 +30,7 @@
     }
 
 ?>
-<?php include_once "./common/base_start.php"; ?>
+<?php include_once "./layout/base_start.php"; ?>
 
             <?php 
                 if(empty($_SESSION['login'])){
@@ -76,4 +76,4 @@
                 }
             ?>
 
-<?php include_once "./common/base_end.php"; ?>
+<?php include_once "./layout/base_end.php"; ?>

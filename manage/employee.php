@@ -8,7 +8,7 @@
         "postcode"=>"text","city"=>"text","address"=>"text","salary"=>"number","aleave"=>"number"];
     $table="employee";
 
-    include_once "../common/cud_base.php";
+    include_once "../layout/cud_base.php";
 
     
 ?>

@@ -8,7 +8,7 @@
     "postcode"=>"text","city"=>"text","address"=>"text","contact"=>"text","title"=>"text","tel"=>"text"];
     $table="customer";
 
-    include_once "../common/cud_base.php";
+    include_once "../layout/cud_base.php";
 
     
 ?>

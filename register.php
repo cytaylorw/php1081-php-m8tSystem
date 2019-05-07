@@ -27,7 +27,7 @@
 
 ?>
 
-<?php include_once "./common/base_start.php"; ?>
+<?php include_once "./layout/base_start.php"; ?>
 
             <form action="register.php" method="post">
                 <div id="register" class="inputBox">
@@ -56,4 +56,4 @@
                 </div>
             </form>
             
-<?php include_once "./common/base_end.php"; ?>
+<?php include_once "./layout/base_end.php"; ?>
