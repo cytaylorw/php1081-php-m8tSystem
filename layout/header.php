@@ -40,12 +40,12 @@
                 <?php
                     if(empty($_SESSION['login'])){
                 ?>
-                    <a href="<?php echo getRootR($contentDir,$dir);?>index.php">登入</a>
-                    <a href="<?php echo getRootR($contentDir,$dir);?>register.php">註冊</a>
+                    <a href="<?php echo getDirR("account",$contentDir,$dir);?>login.php">登入</a>
+                    <a href="<?php echo getDirR("account",$contentDir,$dir);?>register.php">註冊</a>
                 <?php
                     }else{
                 ?>
-                <a href="<?php echo getRootR($contentDir,$dir);?>logout.php">登出</a>
+                <a href="<?php echo getDirR("account",$contentDir,$dir);?>logout.php">登出</a>
                 <?php
                     }
                 ?>

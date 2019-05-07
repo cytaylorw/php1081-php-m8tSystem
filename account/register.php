@@ -1,7 +1,7 @@
 <?php
-    include_once "./common/sql.php";
-    include_once "./common/dir.php";
-    include_once "./common/session.php";
+    include_once "../common/sql.php";
+    include_once "../common/dir.php";
+    include_once "../common/session.php";
 
     $col1=['ename'=>"員工編號",'eid'=>"姓名"];
     $col2=["username"=>"username","password"=>"password"];
@@ -32,7 +32,7 @@
 ?>
 
 <?php 
-include_once "./layout/base_start.php";
-include_once "./layout/form1.php";
-include_once "./layout/base_end.php"; 
+include_once getDirR("layout",$contentDir,$dir)."base_start.php";
+include_once getDirR("layout",$contentDir,$dir)."form1.php";
+include_once getDirR("layout",$contentDir,$dir)."base_end.php"; 
 ?>

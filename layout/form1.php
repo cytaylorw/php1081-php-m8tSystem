@@ -1,5 +1,5 @@
 <form action="<?=$file?>" method="post">
-    <div id="<?php echo explode(".",$file)[0];?>" class="inputBox">
+    <div class="inputBox">
         <div class="msg">
             <?php
                 if(isset($msg)) echo $msg;
