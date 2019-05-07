@@ -4,12 +4,15 @@
     include_once "./common/session.php";
 
     $pgName='產品銷售管理系統';
+    $col=["username"=>"username","password"=>"password"];
+    $inputLabels=["username"=>'帳號',"password"=>'密碼'];
+    $submitLabel='登入';
+    
+
     if(empty($_SESSION['login']) && !empty($_POST)){
         //登入驗證
         $pdo=dbconnect();
-        $col=["username","password"];
-        $value=[$_POST['username'],$_POST['password']];
-        $sql=sqlSelect("*","user",whereEqual($col,$value));
+        $sql=sqlSelect("*","user",whereEqual($col,$_POST));
         $user=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
         if($user){
             $sql=sqlSelect("*","employee",whereEqual("員工編號",$user['eid']));
@@ -30,50 +33,15 @@
     }
 
 ?>
-<?php include_once "./layout/base_start.php"; ?>
+<?php 
+include_once "./layout/base_start.php"; 
 
-            <?php 
-                if(empty($_SESSION['login'])){
-                    // 未登入顯示登入畫面
-            ?>
-            <form action="index.php" method="post">
-                <div id="login" class="inputBox">
-                    <div class="msg">
-                        <?php
-                            if(isset($msg)) echo $msg;
-                        ?>
-                    </div>
-                    <div id="username" class="inputRow">
-                        <div class="label">帳號：</div>
-                        <input type="text" name="username" value="<?php if(!empty($_POST['username'])) echo $_POST['username']; ?>" required>
-                    </div>
-                    <div id="password" class="inputRow">
-                        <div class="label">密碼：</div>
-                        <input type="password" name="password" required>
-                    </div>
-                    <div class="action"><input type="submit" value="登入"></div>
-                </div>
-            </form>
-            <?php
-                }else{
-                    // 登入後首頁
-            ?>
-            <div class="wrap">
-                <div class="welcome">
-                    <ul>
-                        <li>歡迎使用「產品銷售管理系」。</li>
-                        <li><span class="label">員工編號：</span><?=$_SESSION['eid']?></li>
-                        <li><span class="label">姓名：</span><?=$_SESSION['ename']?></li>
-                        <li><span class="label">職稱：</span><?=$_SESSION['title']?></li>
-                    </ul>
-                </div>
-                <div class="introWrap">
-                    <div class="introBox"></div>
-                    <div class="introBox"></div>
-                </div>
-            </div>
-            <?php
-                }
-            ?>
-
-<?php include_once "./layout/base_end.php"; ?>
+if(empty($_SESSION['login'])){
+    // 未登入顯示登入畫面
+    include_once "./layout/form1.php";
+}else{
+    // 登入後首頁
+    include_once "./layout/welcome.php";
+}
+include_once "./layout/base_end.php"; 
+?>

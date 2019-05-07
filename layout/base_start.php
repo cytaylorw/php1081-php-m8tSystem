@@ -23,7 +23,9 @@
         <?php include getDirR("layout",$contentDir,$dir)."header.php"; ?>
         <div id="content">
 
-
+        <?php
+        
+        ?>
 
         <!-- </div>
         <?php include getDirR("layout",$contentDir,$dir)."footer.php"; ?>
