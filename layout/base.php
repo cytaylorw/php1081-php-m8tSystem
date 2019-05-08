@@ -24,10 +24,22 @@
         <div id="content">
 
         <?php
-        
+            $accountPg=['login.php','register.php'];
+            $manageSearch=['employees.php','products.php','customers.php'];
+            $manageCUD=['employee.php','product.php','customer.php'];
+            
+            if($file == "index.php"){
+                include_once getDirR("layout",$contentDir,$dir)."welcome.php";
+            }else if(in_array($file,$manageSearch)){
+                include_once getDirR("layout",$contentDir,$dir)."filter_table.php";
+            }else if(in_array($file,$manageCUD)){
+                include_once getDirR("layout",$contentDir,$dir)."form_cud.php";
+            }else if(in_array($file,$accountPg)){
+                include_once getDirR("layout",$contentDir,$dir)."form1.php";
+            }
         ?>
 
-        <!-- </div>
+        </div>
         <?php include getDirR("layout",$contentDir,$dir)."footer.php"; ?>
     </div>
     <?php
@@ -42,4 +54,4 @@
         }
     ?>
 </body>
-</html> -->
+</html>

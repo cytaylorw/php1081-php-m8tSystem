@@ -37,9 +37,9 @@
             }
             $where=implode(" && ",$where);
             if(!empty($query)){
-                $_SESSION['employee_query_values']=$query;
+                $_SESSION[$table.'_query_values']=$query;
             }else{
-                unset($_SESSION['employee_query_values']);
+                unset($_SESSION[$table.'_query_values']);
             }
         }
     }
@@ -88,7 +88,5 @@
 ?>
 
 <?php 
-include_once getDirR("layout",$contentDir,$dir)."base_start.php";
-include_once getDirR("layout",$contentDir,$dir)."filter_table.php";
-include_once getDirR("layout",$contentDir,$dir)."base_end.php"; 
+include_once getDirR("layout",$contentDir,$dir)."base.php";
 ?>

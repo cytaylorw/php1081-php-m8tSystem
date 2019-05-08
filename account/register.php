@@ -32,7 +32,5 @@
 ?>
 
 <?php 
-include_once getDirR("layout",$contentDir,$dir)."base_start.php";
-include_once getDirR("layout",$contentDir,$dir)."form1.php";
-include_once getDirR("layout",$contentDir,$dir)."base_end.php"; 
+include_once getDirR("layout",$contentDir,$dir)."base.php";
 ?>

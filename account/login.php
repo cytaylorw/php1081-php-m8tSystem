@@ -3,7 +3,7 @@
     include_once "../common/dir.php";
     include_once "../common/session.php";
 
-    $pgName='產品銷售管理系統';
+    $pgName='登入';
     $col=["username"=>"username","password"=>"password"];
     $inputLabels=["username"=>'帳號',"password"=>'密碼'];
     $submitLabel='登入';
@@ -36,7 +36,5 @@
 
 ?>
 <?php 
-include_once getDirR("layout",$contentDir,$dir)."base_start.php"; 
-include_once getDirR("layout",$contentDir,$dir)."form1.php";
-include_once getDirR("layout",$contentDir,$dir)."base_end.php"; 
+include_once getDirR("layout",$contentDir,$dir)."base.php"; 
 ?>

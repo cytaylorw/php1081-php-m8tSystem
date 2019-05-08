@@ -83,7 +83,5 @@
 ?>
 
 <?php 
-include_once "../layout/base_start.php";
-include_once "../layout/form_cud.php";
-include_once "../layout/base_end.php"; 
+include_once "../layout/base.php";
 ?>
