@@ -19,11 +19,10 @@
             $info=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
             if($info){
                 clearSession();
-                $_SESSION['login']=true;
-                $_SESSION['username']=$user['username'];
-                $_SESSION['eid']=$info['員工編號'];
-                $_SESSION['ename']=$info['姓名'];
-                $_SESSION['title']=$info['現任職稱'];
+                $_SESSION['login']['username']=$user['username'];
+                $_SESSION['login']['eid']=$info['員工編號'];
+                $_SESSION['login']['ename']=$info['姓名'];
+                $_SESSION['login']['title']=$info['現任職稱'];
             }else{
                 $msg="此帳號找不到員工資料，無法登入。";
             }

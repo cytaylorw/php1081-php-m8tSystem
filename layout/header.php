@@ -32,7 +32,7 @@
                         if(empty($_SESSION['login'])){
                             echo "未登入";
                         }else{
-                            echo $_SESSION['ename'];
+                            echo $_SESSION['login']['ename'];
                         }
                     ?>
                 </div>
