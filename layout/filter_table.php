@@ -79,7 +79,7 @@
                     </div>
                 </form>    
                     <div class="tableNav">
-                        <div class="totalNum">總數：<?php echo $_SESSION['employee_query_count'];?></div>
+                        <div class="totalNum">總數：<?php echo $_SESSION[$table.'_query_count'];?></div>
                         <div class="pgNav">
                             <form id="nav" action="<?php echo $file;?>" method="get">
                                 <div class="centerWrap">   
@@ -91,7 +91,8 @@
                                             echo "<div class='pgLink' style='visibility: hidden'>上一頁</div>";
                                         }
                                     ?>                         
-                                    <input type="number" name="page" min="1" max="<?php echo $_SESSION['employee_query_pages'];?>" value="<?php echo $page;?>" <?php if($_SESSION['employee_query_pages']<2) echo "disabled";?>>
+                                    <input type="number" name="page" min="1" max="<?php echo $_SESSION[$table.'_query_pages'];?>" 
+                                        value="<?php echo $page;?>" <?php if($_SESSION[$table.'_query_pages']<2) echo "disabled";?>>
                                     <input type="submit" style="display: none">
                                     <?php 
                                         if($page != $lastPg){   
@@ -104,7 +105,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="totalPg">頁數：<?php echo $_SESSION['employee_query_pages'];?></div>
+                        <div class="totalPg">頁數：<?php echo $_SESSION[$table.'_query_pages'];?></div>
                     </div>
                     
                 </div>
