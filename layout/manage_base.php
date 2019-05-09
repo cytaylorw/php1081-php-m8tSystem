@@ -8,6 +8,8 @@
     $colKey=array_keys($col);
     $colName=array_values($col);
     $pageLimit=18;
+    $sql= new sql($table);
+
 
     if(empty($_SESSION['login'])){
         header("location:".getRootR($contentDir,$dir)."index.php");
@@ -27,15 +29,11 @@
                 header("location:".$table.".php?action=".$action['d']."&tableRadio=".$_POST["tableRadio"]);
             }
         }else if(isset($_POST["search"])){
-            $where=[];
-            $query=[];
             foreach($colKey as $ck){
                 if(!empty($_POST[$ck])){
-                    array_push($where, ($col[$ck]." LIKE '%".$_POST[$ck]."%'"));
                     $query[$ck]=$_POST[$ck];
                 } 
             }
-            $where=implode(" && ",$where);
             if(!empty($query)){
                 $_SESSION[$table.'_query_values']=$query;
             }else{
@@ -44,19 +42,20 @@
         }
     }
 
-    if(checkSessionExpire($time,$table.'_last_query',$timeout_duration) || isset($_GET['action'])){
-        $sql=sqlSelect($colName, $table);
-    }
-    if(isset($where)){
-        $sql=sqlSelect($colName, $table, $where);
+    $sql->selects=$colName;
+    $sql->buildSelect();
+
+    if(isset($_SESSION[$table.'_query_values'])){
+        $sql->wheres=sqlArray($col,$_SESSION[$table.'_query_values']);
+        $sql->buildWhere("like");
     }
     
     if(isset($sql)){
-        $pdo=dbconnect();
-        $query=$pdo->query($sql);
+        $query=$sql->dbconnect()->query();
         if($query){
             $listNum=$query->rowCount();
             if($listNum != 0) {
+                checkSessionExpire($time,$table.'_last_query',$timeout_duration);
                 $pageTotal=ceil($listNum/$pageLimit);
                 $_SESSION[$table.'_query']=$query->fetchAll(PDO::FETCH_ASSOC);
                 $_SESSION[$table.'_query_count']=$listNum;

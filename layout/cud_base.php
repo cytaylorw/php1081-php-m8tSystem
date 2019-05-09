@@ -8,6 +8,7 @@
     $bodyJS=["cancel.js"];
     $colKey=array_keys($col);
     $colName=array_values($col);
+    $sql= new sql($table);
 
     if(empty($_SESSION['login'])){
         header("location:".getRootR($contentDir,$dir)."index.php");
@@ -23,9 +24,10 @@
     if(empty($_POST)){
         if($_GET['action'] == $action['c'])unset($_SESSION[$table.'_cud_info']);
         if(!empty($_GET['tableRadio'])){
-            $pdo=dbconnect();
-            $sql=sqlSelect("*", $table, array_values($id)[0]."='".$_GET['tableRadio']."'");
-            $info=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+            $sql->dbconnect();
+            $sql->selects = ["*"];
+            $sql->wheres = sqlArray(array_values($id)[0],$_GET['tableRadio']);
+            $info=$sql->buildSelect()->buildWhere()->query()->fetch(PDO::FETCH_ASSOC);
             if($info){
                 $_SESSION[$table.'_cud_info']=$info;
                 $postAction=$postAction.'&tableRadio='.$_GET['tableRadio'];
@@ -36,22 +38,23 @@
         }
     }else{
         if(isset($_POST['cud'])){
-            $pdo=dbconnect();
+            $sql->dbconnect();
             $status="action=";
             if($_GET['action'] == $action['c']){
-                $sql=sqlInsert($table,$col,getPostValues($colKey));
-                $insert=$pdo->query($sql);
+                $sql->inserts=sqlArray($col,$_POST);
+                print_r($sql->inserts);
+                $insert=$sql->buildInsert()->query();
                 if($insert){
                     $status=$status.$action['c'];
                 }else{
                     $msg=$pgName."資料庫異常，新增失敗。";
                 } 
             }else if($_GET['action'] == $action['u']){
-                $diff=getPostDiffValues($col,$_SESSION[$table.'_cud_info']);
-                print_r($diff);
+                $diff=sqlArray($col,$_POST,$_SESSION[$table.'_cud_info']);
                 if(!empty($diff)){
-                    $sql=sqlUpdate($table,$diff,array_values($id)[0]."='".$_SESSION[$table.'_cud_info'][array_values($id)[0]]."'");
-                    $insert=$pdo->query($sql);
+                    $sql->updates=$diff;
+                    $sql->wheres = sqlArray(array_values($id)[0],$_SESSION[$table.'_cud_info'][array_values($id)[0]]);
+                    $insert=$sql->buildUpdate()->buildWhere()->query();
                     if($insert){
                         $status=$status.$action['u'];
                     }else{
@@ -61,9 +64,9 @@
                     $msg=$pgName."資料無異動，編輯失敗。";
                 }
             }else if($_GET['action'] == $action['d']){
-                $sql=sqlDelete($table,array_values($id)[0]."='".$_SESSION[$table.'_cud_info'][array_values($id)[0]]."'");
-                $insert=$pdo->query($sql);
-                if($insert){
+                $sql->wheres=sqlArray(array_values($id)[0],$_SESSION[$table.'_cud_info'][array_values($id)[0]]);
+                $delete=$sql->buildDelete()->buildWhere()->query();
+                if($delete){
                     $status=$status.$action['d'];
                 }else{
                     $msg=$pgName."資料庫異常，刪除失敗。";

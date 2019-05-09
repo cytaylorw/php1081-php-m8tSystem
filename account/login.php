@@ -8,15 +8,19 @@
     $inputLabels=["username"=>'帳號',"password"=>'密碼'];
     $submitLabel='登入';
     
+    
 
     if(!empty($_POST)){
         //登入驗證
-        $pdo=dbconnect();
-        $sql=sqlSelect("*","user",whereEqual($col,$_POST));
-        $user=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+        $sql= new sql("user");
+        $sql->dbconnect();
+        $sql->selects = ["*"];
+        $sql->wheres = sqlArray($col,$_POST);
+        $user=$sql->buildSelect()->buildWhere()->query()->fetch(PDO::FETCH_ASSOC);
         if($user){
-            $sql=sqlSelect("*","employee",whereEqual("員工編號",$user['eid']));
-            $info=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+            $sql->table="employee";
+            $sql->wheres = sqlArray("員工編號",$user['eid']);
+            $info=$sql->buildSelect()->buildWhere("equal")->query()->fetch(PDO::FETCH_ASSOC);
             if($info){
                 clearSession();
                 $_SESSION['login']['username']=$user['username'];

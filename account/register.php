@@ -3,22 +3,25 @@
     include_once "../common/dir.php";
     include_once "../common/session.php";
 
-    $col1=['ename'=>"員工編號",'eid'=>"姓名"];
+    $col1=['eid'=>"員工編號",'ename'=>"姓名"];
     $col2=["username"=>"username","password"=>"password"];
     $col=array_merge($col1,$col2);;
-    $inputLabels=['ename'=>"員工編號",'eid'=>"姓名","username"=>'帳號',"password"=>'密碼'];
+    $inputLabels=['eid'=>"員工編號",'ename'=>"姓名","username"=>'帳號',"password"=>'密碼'];
     $submitLabel='註冊';
     
     $pgName='註冊帳號';
     if(!empty($_POST)){
-        $pdo=dbconnect();
-        $sql=sqlSelect("*","employee",whereEqual($col1,$_POST));
-        $info=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
-        if($info){
-            
-            $value=[$_POST['username'],$_POST['password'],$info['員工編號']];
-            $sql=sqlInsert("user",$col2,$value);
-            $insert=$pdo->query($sql);
+        $sql= new sql("employee");
+        $sql->dbconnect();
+        $sql->selects = ["*"];
+        $sql->wheres = sqlArray($col1,$_POST);
+        $user=$sql->buildSelect()->buildWhere()->query()->fetch(PDO::FETCH_ASSOC);
+        if($user){
+            $sql->table="user";
+            $value=[$_POST['username'],$_POST['password'],$user['員工編號']];
+            $col2["eid"]="eid";
+            $sql->inserts = sqlArray($col2,$_POST);
+            $insert=$sql->buildInsert()->query();
             if($insert){
                 $msg="註冊成功";
             }else{

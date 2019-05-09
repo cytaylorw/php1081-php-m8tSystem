@@ -1,85 +1,110 @@
 <?php
+    class sql{
+
+        public $pdo;
+        public $table;
+        public $action;
+        public $selects = array();
+        public $inserts = array();
+        public $updates = array();
+        public $wheres = array();
+        public $sql;
+
+        function __construct($table=null) {
+            $this->table = $table;
+        }
+
+        public function dbconnect($host="localhost", $user="root", $password="", $db="qdb"){
+            $dsn="mysql:host=$host;charset=utf8;dbname=$db";
+            $this->pdo= new PDO($dsn,$user,$password);
+            return $this;
+        }
+
+        public function buildSelect(){
+            if(isset($this->selects)){
+                $this->sql="SELECT ".implode(",",$this->selects)." FROM ".$this->table;
+                return $this;
+            }else{
+                return false;
+            }
+        }
+
+        public function buildWhere($condition="equal",$operator=null){
+            if(isset($this->sql)){
+                if(isset($this->wheres)){
+                    if((trim($condition) == "=") || (strtolower($condition) == "equal")){
+                        foreach($this->wheres as $key => $value){
+                            if(!empty($value))$where[]=$key."='".$value."'";
+                        }
+                    }else if((strtolower($condition) == "like")){
+                        foreach($this->wheres as $key => $value){
+                            if(!empty($value))$where[]=$key." LIKE '%".$value."%'";
+                        }
+                    }
+                    if(empty($operator)){
+                        $this->sql=$this->sql." WHERE ".$where[0];
+                    }else{
+                        $this->sql=$this->sql." WHERE ".implode(" ".strtoupper(trim($operator))." ",$where);
+                    }
+                    return $this;                
+                }else{
+                    return false;
+                }
+            }
+        }
+
+        public function buildInsert(){
+            if(isset($this->inserts)){
+                $this->sql="INSERT INTO ".$this->table."(".implode(array_keys($this->inserts),",").
+                    ") VALUES ('".implode(array_values($this->inserts),"','")."')";
+                return $this;
+            }else{
+                return false;
+            }
+        }
+
+        public function buildUpdate(){
+            if(isset($this->updates)){
+                foreach($this->updates as $key => $value){
+                    $set[]=$key."='".$value."'";
+                }
+                $this->sql="UPDATE ".$this->table." SET ".implode(", ",$set);
+                return $this;
+            }else{
+                return false;
+            }
+        }
+
+        public function buildDelete(){
+            $this->sql="DELETE FROM ".$this->table;
+            return $this;
+        }
+
+        public function query(){
+            return $this->pdo->query($this->sql);
+        }
+    }
+
     function dbconnect($host="localhost", $user="root", $password="", $db="qdb")
     {
         $dsn="mysql:host=$host;charset=utf8;dbname=$db";
         $pdo= new PDO($dsn,$user,$password);
         return $pdo;
     }
-    
-    function sqlSelect($col, $table, $where=null){
-        $sql="SELECT ";
-        if(is_array($col)){
-            $lastKey=array_keys($col)[count($col)-1];
-            foreach($col as $k => $c){
-                $sql=$sql.$c;
-                if($k !== $lastKey){
-                    $sql=$sql.", ";
-                }
-            }
-        }else{
-            $sql=$sql.$col;
-        }
-        $sql=$sql." FROM ".$table;
-        if(!empty($where)){
-            $sql=$sql." WHERE ".$where;
-        }
-        return $sql.";";;
-    }
 
-    function whereEqual($col,$value){
+    function sqlArray($col,$value,$old=null){
+        $array=[];
         if(is_array($col)){
-            $where=[];
             foreach($col as $key => $c){
-                if(!empty($c)){
-                    array_push($where,$c."='".$value[$key]."'");
+                if(!empty($value[$key])){
+                    if(empty($old) || $value[$key]!=$old[$c]){
+                        $array[$c]=$value[$key];
+                    }
                 }
             }
-            return implode($where," && ");
+            
         }else{
-            return $col."='".$value."'";
-        }   
+            $array[$col]=$value;
+        }  
+        return $array; 
     } 
-
-    function sqlInsert($table,$col,$value){
-        $sql="INSERT INTO ".$table."(".implode($col,",").") VALUES (";
-        $tmp=[];
-        foreach ($value as $v){
-            array_push($tmp,"'".$v."'");
-        }
-        return $sql.implode($tmp,",").");";
-    }
-
-    function sqlUpdate($table,$new,$where){
-        $sql="UPDATE ".$table." SET ";
-        $set=[];
-        foreach ($new as $n){
-            array_push($set,array_keys($n)[0]."='".array_values($n)[0]."'");
-        }
-        $sql=$sql.implode($set,",")." WHERE ".$where;
-        return $sql;
-    }
-
-    function sqlDelete($table,$where){
-        return "DELETE FROM ".$table." WHERE ".$where;
-    }
-
-    function getPostValues($keys){
-        $values=[];
-        foreach($keys as $k){
-            array_push($values,$_POST[$k]);
-        }
-        return $values;
-    }
-
-    function getPostDiffValues($col,$old){
-        $new=[];
-        // print_r($keys);
-        // print_r($old);
-        foreach($col as $key => $c){
-            if($_POST[$key] != $old[$c]){
-                array_push($new,[$c => $_POST[$key]]);
-            }
-        }
-        return $new;
-    }
-?>
