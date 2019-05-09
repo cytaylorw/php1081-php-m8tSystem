@@ -50,34 +50,38 @@
                                         }
                                     ?>
                                 </div>
+                                <?php
+                                if(isset($list)){
+                                ?>
                                 <div class="tableList">
                                 <?php 
-                                    if(isset($list)){
                                         foreach($list as $row){
                                 ?>
-                                <div class="listRow">
-                                    <?php
+                                    <div class="listRow">
+                                        <?php
 
-                                            foreach($row as $key => $value){
-                                            if($key==$colName[0]){
-                                                echo "<div class='tableCell'><input type='radio' name='tableRadio' value='".$value."'></div>";
-                                            }else{
-                                                echo "<div class='tableCell'>".$value."</div>";
-                                            }
-                                            }
-                                        ?>
-                                </div>
+                                                foreach($row as $key => $value){
+                                                if($key==$colName[0]){
+                                                    echo "<div class='tableCell'><input type='radio' name='tableRadio' value='".$value."'></div>";
+                                                }else{
+                                                    echo "<div class='tableCell'>".$value."</div>";
+                                                }
+                                                }
+                                            ?>
+                                    </div>
                                 <?php
-                                    }}else{
-                                        echo "<div class='tableCell'>查無資料</div>";
                                     }
                                 ?>
                                 </div>
+                                <?php
+                                }
+                                ?>
                             
                         </div>
                         
                     </div>
-                </form>    
+                </form>
+                    
                     <div class="tableNav">
                         <div class="totalNum">總數：<?php echo $_SESSION[$table.'_query_count'];?></div>
                         <div class="pgNav">
@@ -110,3 +114,8 @@
                     
                 </div>
             </div>
+            <?php
+                        if(!isset($list)){
+                            echo "<div class='msg tableMsg'>查無資料</div>";
+                        }
+                    ?>

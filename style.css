@@ -383,6 +383,12 @@ form#cud{
     border-radius: 0px 0px 10px 10px;
 }
 
+
+.tableMsg {
+    position: absolute;
+    width: calc(100% - 4px - var(--content-padding) * 2);
+}
+
 .totalNum, .totalPg {
     width: 120px;
 }
