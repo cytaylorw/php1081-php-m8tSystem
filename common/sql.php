@@ -8,6 +8,8 @@
         public $inserts = array();
         public $updates = array();
         public $wheres = array();
+        public $groups = array();
+        public $orders = array();
         public $sql;
 
         function __construct($table=null) {
@@ -50,6 +52,18 @@
                 }else{
                     return false;
                 }
+            }
+        }
+
+        public function buildGroupBy(){
+            if(isset($this->groups) && isset($this->sql)){
+                $this->sql=$this->sql." GROUP BY ".implode(",",$this->groups);
+            }
+        }
+
+        public function buildOrderBy(){
+            if(isset($this->orders) && isset($this->sql)){
+                $this->sql=$this->sql." ORDER BY ".implode(",",$this->orders);
             }
         }
 
