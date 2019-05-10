@@ -8,8 +8,8 @@
             <div class="menu floatL">
                 <div class="menuBtn">報告</div>
                 <div class="menuList">
-                    <a href="">產品銷售狀況</a>
-                    <a href="">業務部銷售狀況</a>
+                    <a href="<?php echo getDirR("report",$contentDir,$dir); ?>product_report.php">產品銷售狀況</a>
+                    <a href="<?php echo getDirR("report",$contentDir,$dir); ?>department_report.php">業務部銷售狀況</a>
                 </div>
             </div>
             <div class="menu floatL">

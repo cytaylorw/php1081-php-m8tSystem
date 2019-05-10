@@ -414,3 +414,15 @@ form#cud{
 #cud.inputBox .inputRow input{
     width: 400px;
 }
+
+.reportPath{
+    width: 100%;
+}
+
+.reportForm {
+    clear: both;
+}
+
+#reportFilter {
+    clear: both;
+}

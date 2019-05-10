@@ -27,6 +27,7 @@
             $accountPg=['login.php','register.php'];
             $manageSearch=['employees.php','products.php','customers.php'];
             $manageCUD=['employee.php','product.php','customer.php'];
+            $reportPg=['department_report.php','product_report.php'];
             
             if($file == "index.php"){
                 include_once getDirR("layout",$contentDir,$dir)."welcome.php";
@@ -36,6 +37,8 @@
                 include_once getDirR("layout",$contentDir,$dir)."form_cud.php";
             }else if(in_array($file,$accountPg)){
                 include_once getDirR("layout",$contentDir,$dir)."form1.php";
+            }else if(in_array($file,$reportPg)){
+                include_once getDirR("layout",$contentDir,$dir)."report.php";
             }
         ?>
 

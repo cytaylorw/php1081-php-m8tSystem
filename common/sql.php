@@ -56,14 +56,22 @@
         }
 
         public function buildGroupBy(){
+
             if(isset($this->groups) && isset($this->sql)){
                 $this->sql=$this->sql." GROUP BY ".implode(",",$this->groups);
+                return $this;
+            }else{
+                return false;
             }
+
         }
 
         public function buildOrderBy(){
             if(isset($this->orders) && isset($this->sql)){
                 $this->sql=$this->sql." ORDER BY ".implode(",",$this->orders);
+                return $this;
+            }else{
+                return false;
             }
         }
 
