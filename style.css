@@ -426,3 +426,41 @@ form#cud{
 #reportFilter {
     clear: both;
 }
+
+.reportFilter {
+    display: inline-block;
+    width: 100%;
+    clear: both;
+    min-height: 50px;
+    background-color: rgba(72, 114, 62,0.5);
+}
+
+.filterWrap{
+    min-height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.resultSection {
+    display: table;
+    width: 100%;
+}
+
+.resultHeader, .resultRow{
+    display: table-row;
+}
+
+.resultRow{
+
+}
+.filterLabel, .filterInput{
+    min-height: 50px;
+    min-width: 100px;
+    padding: 10px;
+}
+
+.filterInput{
+    background-color: rgba(238, 238, 221, 0.5);
+    padding: auto;
+}

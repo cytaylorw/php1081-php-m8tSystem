@@ -13,11 +13,11 @@
                 </div>
             </div>
         </div>
-        <div class="reportForm">
-            <div class="floatR">
-            <div class="inputRow floatL">
-                <div class="label floatL">交易年：</div>
-                <div class="floatL">
+        <div class="reportFilter">
+            <!-- <div class="filterRow"> -->
+                <div class="filterWrap">
+                <span class="filterLabel">交易年：</span>
+                <span class="filterInput">
                     <select name="year" id="year">
                     <?php
                         foreach($years as $key => $value){
@@ -26,38 +26,148 @@
                     ?>
                     </select>
                 </div>
-            </div>
-            <div class="inputRow floatL">
-                <div class="label floatL">產品名稱：</div>
-                <div class="floatL">
+                <?php
+                    if(isset($products)){
+                ?>
+                </span>
+                <div class="filterWrap">
+                <span class="filterLabel">產品代號：</span>
+                <span class="filterInput">
                     <select name="product" id="product">
-                            <option value="">全部</option>
+                            <option value="all">全部</option>
                     <?php
                         foreach($products as $key => $value){
-                            echo "<option value='".$value["產品名稱"]."'>".$value["產品名稱"]."</option>";
+                            echo "<option value='".$value["產品代號"]."'>".$value["產品代號"]."</option>";
                         }
                     ?>
                     </select>
                 </div>
-            </div>
-            <div class="inputRow floatL">
-                <div class="label floatL">排序：</div>
-                <div class="floatL">
+                <?php
+                }
+                if(isset($dept)){
+                ?>
+                </span>
+                <div class="filterWrap">
+                <span class="filterLabel">部門名稱：</span>
+                <span class="filterInput">
+                    <select name="product" id="product">
+                            <option value="all">全部</option>
+                    <?php
+                        foreach($dept as $key => $value){
+                            echo "<option value='".$value["部門名稱"]."'>".$value["部門名稱"]."</option>";
+                        }
+                    ?>
+                    </select>
+                </div>
+                <?php
+                }
+                
+                ?>
+                </span>
+                <div class="filterWrap">
+                <span class="filterLabel">排序：</span>
+                <span class="filterInput">
                     <select name="order" id="order">
                         <option value='DESC' selected>遞減</option>
                         <option value='ASC'>遞增</option>
                     </select>
                 </div>
-            </div>
-            <div class="inputRow floatL">
-                <div class="label floatL">總額：</div>
-                <div class="floatL">
-                    <input type="number" name="stotal" id="stotal" min="0" step="1000000">
+                </span>
+                <div class="filterWrap">
+                <span class="filterLabel">總額：</span>
+                <span class="filterInput">
+                    <input type="number" name="stotal" id="stotal" min="0" step="1000000"></span>
                 </div>
-            </div>
-            </div>
+            <!-- </div> -->
         
         </div>
     </form>
-    <div class="reportResult"></div>
+    <div class="reportResult">
+        <?php
+            if(count($rows)){
+        ?>
+        <div class="resultSection">
+            <div class="resultHeader">
+                <?php
+                    foreach((array_keys($rows[0])) as $value){
+                        echo "<div class='tableCell'>$value</div>";
+                    }
+                ?>
+            </div>
+            <?php
+                $colNum=count(array_keys($rows[0]));
+                $groupNum=count($groupCol);
+                $group="";
+                $groupSum=0;
+                $grandSum=0;
+                foreach($rows as $r){                    
+                    if($r["產品代號"]!=$group){
+                        if($groupSum){
+                            $resultRow="";
+                            for($i=0;$i<($colNum-1);$i++){
+                                $resultRow.="<div class='tableCell'></div>";
+                            }
+                            $resultRow.="<div class='tableCell'>$groupSum</div>";
+                        ?>
+                        <div class="resultRow groupSum">
+                            <?php echo $resultRow ?>                    
+                        </div>
+                        <?php
+                        }
+                        $resultRow="";
+                        $groupSum=0;
+                        $group=$r["產品代號"];
+                        for($i=0;$i<$groupNum;$i++){
+                            $resultRow.="<div class='tableCell'>".$r[$col[$i]]."</div>";
+                        }
+                        for($i=0;$i<($colNum-$groupNum);$i++){
+                            $resultRow.="<div class='tableCell'></div>";
+                        }
+                        ?>
+                        <div class="resultRow">
+                           <?php echo $resultRow ?>                    
+                        </div>
+                        <?php
+                    }
+                    $resultRow="";
+                    for($i=0;$i<$groupNum;$i++){
+                        $resultRow.="<div class='tableCell'></div>";
+                    }
+                    for($i=0;$i<($colNum-$groupNum);$i++){
+                        $resultRow.="<div class='tableCell'>".$r[$col[($i+$groupNum)]]."</div>";
+                    }
+                    $groupSum+=$r['總額'];
+                    $grandSum+=$r['總額'];
+            ?>
+            <div class="resultRow">
+               <?php echo $resultRow ?>                    
+            </div>
+            <?php
+                }
+                if($groupSum){
+                    $resultRow="";
+                    for($i=0;$i<($colNum-1);$i++){
+                        $resultRow.="<div class='tableCell'></div>";
+                    }
+                    $resultRow.="<div class='tableCell'>$groupSum</div>";
+                ?>
+                <div class="resultRow groupSum">
+                    <?php echo $resultRow ?>                    
+                </div>
+                <?php
+                }
+                $resultRow="";
+                for($i=0;$i<($colNum-1);$i++){
+                    $resultRow.="<div class='tableCell'></div>";
+                }
+                $resultRow.="<div class='tableCell'>$grandSum</div>";
+            ?>
+            <div class="resultRow grandSum">
+               <?php echo $resultRow ?>                    
+            </div>
+        </div>
+        <?php
+            }
+        ?>
+    </div>
 </div>

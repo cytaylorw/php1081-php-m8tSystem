@@ -23,7 +23,7 @@
                                         foreach($colKey as $key => $ck){
                                             if($key==0){
                                     ?>
-                                    <div class='tableCell noPadding'><input type='submit' name='search' value='搜尋'></div>
+                                    <div class='tableCell'><input type='submit' name='search' value='搜尋'></div>
                                     <?php
                                             }else{
                                                 if(empty($_SESSION[$table.'_query_values'][$ck])){
@@ -42,7 +42,7 @@
                                         foreach($colName as $key => $cn){
                                             if($key==0){
                                     ?>
-                                    <div class='tableCell noPadding'><input id="clearBtn" type='button' value='清除'></div>
+                                    <div class='tableCell'><input id="clearBtn" type='button' value='清除'></div>
                                     <?php
                                             }else{
                                                 echo "<div class='tableCell'>".$cn."</div>";
