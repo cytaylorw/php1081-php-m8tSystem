@@ -107,7 +107,7 @@
                             for($i=0;$i<($colNum-1);$i++){
                                 $resultRow.="<div class='tableCell'></div>";
                             }
-                            $resultRow.="<div class='tableCell'>$groupSum</div>";
+                            $resultRow.="<div class='tableCell'>".number_format($groupSum)."</div>";
                         ?>
                         <div class="resultRow groupSum">
                             <?php echo $resultRow ?>                    
@@ -134,7 +134,7 @@
                         $resultRow.="<div class='tableCell'></div>";
                     }
                     for($i=0;$i<($colNum-$groupNum);$i++){
-                        $resultRow.="<div class='tableCell'>".$r[$col[($i+$groupNum)]]."</div>";
+                        $resultRow.="<div class='tableCell'>".(($col[($i+$groupNum)]=="總額")?number_format($r[$col[($i+$groupNum)]]):$r[$col[($i+$groupNum)]])."</div>";
                     }
                     $groupSum+=$r['總額'];
                     $grandSum+=$r['總額'];
@@ -149,7 +149,7 @@
                     for($i=0;$i<($colNum-1);$i++){
                         $resultRow.="<div class='tableCell'></div>";
                     }
-                    $resultRow.="<div class='tableCell'>$groupSum</div>";
+                    $resultRow.="<div class='tableCell'>".number_format($groupSum)."</div>";
                 ?>
                 <div class="resultRow groupSum">
                     <?php echo $resultRow ?>                    
@@ -160,7 +160,7 @@
                 for($i=0;$i<($colNum-1);$i++){
                     $resultRow.="<div class='tableCell'></div>";
                 }
-                $resultRow.="<div class='tableCell'>$grandSum</div>";
+                $resultRow.="<div class='tableCell'>".number_format($grandSum)."</div>";
             ?>
             <div class="resultRow grandSum">
                <?php echo $resultRow ?>                    

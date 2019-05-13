@@ -436,10 +436,11 @@ form#cud{
 }
 
 .filterWrap{
-    min-height: 50px;
+    min-height: 40px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    padding-top: 5px;
 }
 
 .resultSection {
@@ -451,16 +452,44 @@ form#cud{
     display: table-row;
 }
 
-.resultRow{
-
+.resultHeader .tableCell{
+    background-image: linear-gradient(to bottom right, #bfdb81, transparent);
 }
+
 .filterLabel, .filterInput{
-    min-height: 50px;
+    min-height: 40px;
     min-width: 100px;
-    padding: 10px;
+    padding: 5px;
+}
+
+.filterInput select{
+    min-width: 80px;
 }
 
 .filterInput{
     background-color: rgba(238, 238, 221, 0.5);
     padding: auto;
+}
+
+.resultRow>*:last-child{
+    text-align: right;
+    padding-right: 20px;
+}
+
+.groupSum{
+    background-color: rgba(234, 230, 158, 0.5);
+}
+
+.groupSum .tableCell{
+    border-width: 0px 0px 1px 0px;
+    border-color: black;
+}
+
+.grandSum{
+    background-color: rgba(191, 219, 129, 0.5);
+}
+
+.grandSum .tableCell{
+    border-width: 0px 0px 1px 0px;
+    border-color: black;
 }
