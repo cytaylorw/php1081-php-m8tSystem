@@ -1,5 +1,5 @@
 <div class="wrap">
-    <form id="reportFilter" name="reportFilter" action="" method="post">
+    <form id="reportFilter" name="reportFilter" action="<?php echo $file;?>" method="post">
         <div class="action tableAction">
             <div class="path floatL">
                 <a href="<?php echo getRootR($contentDir,$dir);?>index.php">首頁</a>
@@ -9,34 +9,33 @@
             <div class="floatR borderR-TR">                            
                 <div class="floatL">                                
                     <input class='CUD floatL' type='submit' name='submit' value='產生報表'>
-                    <input class='CUD floatL' id="clearBtn" type='button' value='清除'>
+                    <input class='CUD floatL' id="clearBtn" type='reset' value='清除'>
                 </div>
             </div>
         </div>
         <div class="reportFilter">
-            <!-- <div class="filterRow"> -->
                 <div class="filterWrap">
                 <span class="filterLabel">交易年：</span>
                 <span class="filterInput">
                     <select name="year" id="year">
                     <?php
-                        foreach($years as $key => $value){
+                        foreach($_SESSION['report_filter_years'] as $key => $value){
                             echo "<option value='".$value["交易年"]."'>".$value["交易年"]."</option>";
                         }
                     ?>
                     </select>
                 </div>
                 <?php
-                    if(isset($products)){
+                    if(in_array("products",$filterOpt)){
                 ?>
                 </span>
                 <div class="filterWrap">
                 <span class="filterLabel">產品代號：</span>
                 <span class="filterInput">
                     <select name="product" id="product">
-                            <option value="all">全部</option>
+                            <option value="all" selected>全部</option>
                     <?php
-                        foreach($products as $key => $value){
+                        foreach($_SESSION['report_filter_products'] as $key => $value){
                             echo "<option value='".$value["產品代號"]."'>".$value["產品代號"]."</option>";
                         }
                     ?>
@@ -44,16 +43,16 @@
                 </div>
                 <?php
                 }
-                if(isset($dept)){
+                if(in_array("dept",$filterOpt)){
                 ?>
                 </span>
                 <div class="filterWrap">
                 <span class="filterLabel">部門名稱：</span>
                 <span class="filterInput">
-                    <select name="product" id="product">
-                            <option value="all">全部</option>
+                    <select name="dept" id="dept">
+                            <option value="all" selected>全部</option>
                     <?php
-                        foreach($dept as $key => $value){
+                        foreach($_SESSION['report_filter_depts'] as $key => $value){
                             echo "<option value='".$value["部門名稱"]."'>".$value["部門名稱"]."</option>";
                         }
                     ?>
@@ -68,7 +67,7 @@
                 <span class="filterLabel">排序：</span>
                 <span class="filterInput">
                     <select name="order" id="order">
-                        <option value='DESC' selected>遞減</option>
+                        <option value='DESC'>遞減</option>
                         <option value='ASC'>遞增</option>
                     </select>
                 </div>
@@ -78,13 +77,11 @@
                 <span class="filterInput">
                     <input type="number" name="stotal" id="stotal" min="0" step="1000000"></span>
                 </div>
-            <!-- </div> -->
-        
         </div>
     </form>
     <div class="reportResult">
         <?php
-            if(count($rows)){
+            if(isset($rows) && count($rows)){
         ?>
         <div class="resultSection">
             <div class="resultHeader">
@@ -101,7 +98,7 @@
                 $groupSum=0;
                 $grandSum=0;
                 foreach($rows as $r){                    
-                    if($r["產品代號"]!=$group){
+                    if($r[$groupCol[0]].$r[$groupCol[1]]!=$group){
                         if($groupSum){
                             $resultRow="";
                             for($i=0;$i<($colNum-1);$i++){
@@ -116,7 +113,7 @@
                         }
                         $resultRow="";
                         $groupSum=0;
-                        $group=$r["產品代號"];
+                        $group=$r[$groupCol[0]].$r[$groupCol[1]];
                         for($i=0;$i<$groupNum;$i++){
                             $resultRow.="<div class='tableCell'>".$r[$col[$i]]."</div>";
                         }
@@ -158,7 +155,7 @@
                 }
                 $resultRow="";
                 for($i=0;$i<($colNum-1);$i++){
-                    $resultRow.="<div class='tableCell'></div>";
+                    $resultRow.="<div class='tableCell'>".(($i==0)?"銷售總額":"")."</div>";
                 }
                 $resultRow.="<div class='tableCell'>".number_format($grandSum)."</div>";
             ?>

@@ -5,7 +5,8 @@
     unset($dir[(count($dir)-1)]);
     unset($dir[0]);
 
-    function getRootR($contentDir,$dir){
+    function getRootR(){
+        global $contentDir,$dir;
         $depth=dirDepth($contentDir,$dir);
         if($depth == 0){
             return './';
@@ -19,7 +20,8 @@
         }
     }
 
-    function getDirR($dir_name,$contentDir,$dir){
+    function getDirR($dir_name){
+        global $contentDir,$dir;
         if(in_array($dir_name,$dir)){
             return "./";
         }else{
@@ -27,7 +29,8 @@
         }
     }
 
-    function dirDepth($contentDir,$dir){
+    function dirDepth(){
+        global $contentDir,$dir;
         $count=0;
         foreach($contentDir as $c){
             if(in_array($c,$dir)) $count++;

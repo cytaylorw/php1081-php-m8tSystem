@@ -3,7 +3,7 @@
                 <form id="cud" name="cud" action="<?php echo $file;?>" method="post">
                     <div class="action tableAction">
                         <div class="path floatL">
-                            <a href="<?php echo getRootR($contentDir,$dir);?>index.php">首頁</a>
+                            <a href="<?php echo getRootR();?>index.php">首頁</a>
                             <span>&nbsp;>&nbsp;</span>
                             <a href="<?php echo $file;?>" class="active"><?=$pgName?></a>
                         </div>

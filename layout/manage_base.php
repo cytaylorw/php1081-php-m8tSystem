@@ -12,7 +12,7 @@
 
 
     if(empty($_SESSION['login'])){
-        header("location:".getRootR($contentDir,$dir)."index.php");
+        header("location:".getRootR()."index.php");
     }    
 
     if(!empty($_POST)){   
@@ -55,7 +55,7 @@
         if($query){
             $listNum=$query->rowCount();
             if($listNum != 0) {
-                checkSessionExpire($time,$table.'_last_query',$timeout_duration);
+                checkSessionExpire($table.'_last_query');
                 $pageTotal=ceil($listNum/$pageLimit);
                 $_SESSION[$table.'_query']=$query->fetchAll(PDO::FETCH_ASSOC);
                 $_SESSION[$table.'_query_count']=$listNum;
@@ -87,5 +87,5 @@
 ?>
 
 <?php 
-include_once getDirR("layout",$contentDir,$dir)."base.php";
+include_once getDirR("layout")."base.php";
 ?>

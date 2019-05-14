@@ -11,10 +11,10 @@
     $sql= new sql($table);
 
     if(empty($_SESSION['login'])){
-        header("location:".getRootR($contentDir,$dir)."index.php");
+        header("location:".getRootR()."index.php");
     }
 
-    if(empty($_GET) || checkSessionExpire($time,$table.'_last_query',$timeout_duration) || !in_array($_GET['action'],$action) || 
+    if(empty($_GET) || checkSessionExpire($table) || !in_array($_GET['action'],$action) || 
         ($_GET['action'] != $action['c'] && empty($_GET['tableRadio']))){
 
         header("location:".$table."s.php");
