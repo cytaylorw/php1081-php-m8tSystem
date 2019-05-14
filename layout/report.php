@@ -20,7 +20,11 @@
                     <select name="year" id="year">
                     <?php
                         foreach($_SESSION['report_filter_years'] as $key => $value){
-                            echo "<option value='".$value["交易年"]."'>".$value["交易年"]."</option>";
+                            if(!empty($_POST["year"]) && ($_POST["year"] == $value["交易年"])){
+                                echo "<option value='".$value["交易年"]."' selected>".$value["交易年"]."</option>";
+                            }else{
+                                echo "<option value='".$value["交易年"]."' >".$value["交易年"]."</option>";
+                            }
                         }
                     ?>
                     </select>
@@ -36,7 +40,11 @@
                             <option value="all" selected>全部</option>
                     <?php
                         foreach($_SESSION['report_filter_products'] as $key => $value){
-                            echo "<option value='".$value["產品代號"]."'>".$value["產品代號"]."</option>";
+                            if(!empty($_POST["product"]) && ($_POST["product"] == $value["產品代號"])){                                
+                                echo "<option value='".$value["產品代號"]."' selected>".$value["產品代號"]."</option>";
+                            }else{
+                                echo "<option value='".$value["產品代號"]."'>".$value["產品代號"]."</option>";
+                            }
                         }
                     ?>
                     </select>
@@ -50,10 +58,14 @@
                 <span class="filterLabel">部門名稱：</span>
                 <span class="filterInput">
                     <select name="dept" id="dept">
-                            <option value="all" selected>全部</option>
+                            <option value="all">全部</option>
                     <?php
                         foreach($_SESSION['report_filter_depts'] as $key => $value){
-                            echo "<option value='".$value["部門名稱"]."'>".$value["部門名稱"]."</option>";
+                            if(!empty($_POST["dept"]) && ($_POST["dept"] == $value["部門名稱"])){                                
+                                echo "<option value='".$value["部門名稱"]."' selected>".$value["部門名稱"]."</option>";
+                            }else{
+                                echo "<option value='".$value["部門名稱"]."'>".$value["部門名稱"]."</option>";
+                            }
                         }
                     ?>
                     </select>
@@ -67,15 +79,16 @@
                 <span class="filterLabel">排序：</span>
                 <span class="filterInput">
                     <select name="order" id="order">
-                        <option value='DESC'>遞減</option>
-                        <option value='ASC'>遞增</option>
+                        <option value='DESC' <?php if(!empty($_POST["order"]) && $_POST["order"]=="DESC") echo "selected";?>>遞減</option>
+                        <option value='ASC'<?php if(!empty($_POST["order"]) && $_POST["order"]=="ASC") echo "selected";?>>遞增</option>
                     </select>
                 </div>
                 </span>
                 <div class="filterWrap">
                 <span class="filterLabel">總額：</span>
                 <span class="filterInput">
-                    <input type="number" name="stotal" id="stotal" min="0" step="1000000"></span>
+                    <input type="number" name="stotal" id="stotal" min="0" step="1000000" 
+                        <?php if(!empty($_POST["stotal"])) echo "value='".$_POST["stotal"]."'";?>></span>
                 </div>
         </div>
     </form>

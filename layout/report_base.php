@@ -3,6 +3,8 @@
     include_once "../common/sql.php";
     include_once "../common/dir.php";
     include_once "../common/session.php";
+
+    $bodyJS=["report.js"];
     
     $sql= new sql("sales2");
     if(checkSessionExpire('report_filter_years_query')){
