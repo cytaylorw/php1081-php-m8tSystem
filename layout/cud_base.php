@@ -14,7 +14,7 @@
         header("location:".getRootR()."index.php");
     }
 
-    if(empty($_GET) || checkSessionExpire($table) || !in_array($_GET['action'],$action) || 
+    if(empty($_GET) || checkSessionExpire($table.'_last_query') || !in_array($_GET['action'],$action) || 
         ($_GET['action'] != $action['c'] && empty($_GET['tableRadio']))){
 
         header("location:".$table."s.php");
