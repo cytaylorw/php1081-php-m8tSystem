@@ -10,7 +10,7 @@
         ?>
         <div class="inputRow">
             <div class="label"><?=$inputLabels[$key]?>：</div>
-            <input type="text" name="<?=$key?>" value="<?php if(($key != 'password') && !empty($_POST[$key])) echo $_POST[$key]; ?>" required>
+            <input type="<?php echo ($key != 'password')?"text":"password";?>" name="<?=$key?>" value="<?php if(($key != 'password') && !empty($_POST[$key])) echo $_POST[$key]; ?>" required>
         </div>
         <?php
             }
