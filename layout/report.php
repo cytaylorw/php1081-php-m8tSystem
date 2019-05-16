@@ -85,7 +85,7 @@
                 </div>
                 </span>
                 <div class="filterWrap">
-                <span class="filterLabel">總額：</span>
+                <span class="filterLabel">總額<span id="totalDesc"></span>：</span>
                 <span class="filterInput">
                     <input type="number" name="stotal" id="stotal" min="0" step="1000000" 
                         <?php if(!empty($_POST["stotal"])) echo "value='".$_POST["stotal"]."'";?>></span>

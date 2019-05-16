@@ -121,29 +121,52 @@ input[type='text'], input[type='password'], input[type='number'] {
     background-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 9;
 }
 
 .menuList a {
+    position: relative;
+    top: 0;
+    left: 0;
     background-color:  #bfdb81;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    z-index: 9;
 }
-.menuList a:hover {background-color: #eae69e;}
+.menuList a:hover {background-color: #eae69e;z-index: 9;}
 
-.menu:hover .menuList {display: block;}
+.menu:hover:not(.deactive) .menuList {display: block;z-index: 9;}
 
-.menu:hover .menuBtn {background-color: #83a561;}
+.menu:hover:not(.deactive) .menuBtn {background-color: #83a561;}
 
-#user .menuBtn {
+.menu:hover .menuBtn.topBtn {background-color: #83a561;}
+
+
+
+#user .menuBtn:not(.topBtn) {
     text-align: center;
     min-width: 160px;
 }
 
 #user .menuList a{
+    display: block;
     text-align: center;
+}
+
+.topBtn{
+    display:none;
+    text-align: center;
+    padding: 0px;
+
+}
+
+.topBtn a{
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 19px;
 }
 
 /* footer.php */
@@ -454,6 +477,19 @@ form#cud{
 
 .resultHeader .tableCell{
     background-image: linear-gradient(to bottom right, #bfdb81, transparent);
+}
+
+.fixedHeader {
+    position: fixed;
+    top: var(--header-height);
+    left: var(--content-padding);
+    width: calc(100vw - ( var(--content-padding) * 2)); 
+    z-index: 0;
+}
+
+.fixedHeader  .tableCell{
+    background-image: linear-gradient(to bottom right, #bfdb81, #eeeedd );
+    z-index: 0;
 }
 
 .filterLabel, .filterInput{

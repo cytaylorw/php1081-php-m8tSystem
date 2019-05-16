@@ -26,6 +26,11 @@
         ?>
     </div>
     <div id="user" class="floatR">
+        <div class="menu floatL">
+            <div class="menuBtn topBtn">
+                <a href="#content">頁首</a>
+            </div>
+        </div>
             <div class="menu floatL">
                 <div class="menuBtn">
                     <?php
