@@ -7,6 +7,7 @@
     $types=["cno" => "text", "cname"=>"text","taxID"=>"text","industry"=>"text",
     "postcode"=>"text","city"=>"text","address"=>"text","contact"=>"text","title"=>"text","tel"=>"text"];
     $table="customer";
+    $bodyJS=["cancel.js","zhJustified.js"];
 
     include_once "../layout/cud_base.php";
 

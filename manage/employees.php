@@ -4,7 +4,6 @@
     $table="employee";
     $pgName='員工管理';
     $cud=['c'=>true,'u'=>true,'d'=>true];
-    $action=['c'=>"add",'u'=>"edit",'d'=>"delete"];
 
     include_once "../layout/manage_base.php";
     

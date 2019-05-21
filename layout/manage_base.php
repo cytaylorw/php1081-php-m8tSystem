@@ -5,6 +5,7 @@
     include_once "../common/session.php";
 
     $bodyJS=["clear.js","search.js","selectRadio.js"];
+    $action=['c'=>"add",'u'=>"edit",'d'=>"delete"];
     $colKey=array_keys($col);
     $colName=array_values($col);
     $pageLimit=18;

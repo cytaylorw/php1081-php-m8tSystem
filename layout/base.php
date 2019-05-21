@@ -25,8 +25,8 @@
 
         <?php
             $accountPg=['login.php','register.php'];
-            $manageSearch=['employees.php','products.php','customers.php'];
-            $manageCUD=['employee.php','product.php','customer.php'];
+            $manageSearch=['employees.php','products.php','customers.php','users.php'];
+            $manageCUD=['employee.php','product.php','customer.php','user.php'];
             $reportPg=['department_report.php','product_report.php'];
             
             if($file == "index.php"){

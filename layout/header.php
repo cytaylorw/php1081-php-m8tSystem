@@ -18,6 +18,13 @@
                     <a href="<?php echo getDirR("manage"); ?>products.php">產品管理</a>
                     <a href="<?php echo getDirR("manage"); ?>employees.php">員工管理</a>
                     <a href="<?php echo getDirR("manage"); ?>customers.php">客戶管理</a>
+                    <?php
+                        if($_SESSION['login']['eid']=="0"){                            
+                    ?>
+                    <a href="<?php echo getDirR("manage"); ?>users.php">帳號管理</a>
+                    <?php                           
+                        }
+                    ?>
                 </div>
             </div>
         </div>

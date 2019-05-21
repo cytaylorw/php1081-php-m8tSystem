@@ -7,6 +7,7 @@
     $types=["ename"=>"text","title"=>"text","dept"=>"text","tel"=>"text",
         "postcode"=>"text","city"=>"text","address"=>"text","salary"=>"number","aleave"=>"number"];
     $table="employee";
+    $bodyJS=["cancel.js","zhJustified.js"];
 
     include_once "../layout/cud_base.php";
 
