@@ -500,7 +500,11 @@ form#cud{
 .filterLabel, .filterInput{
     min-height: 40px;
     min-width: 100px;
-    padding: 5px;
+    padding: 6px;
+}
+
+.filterWrap:last-of-type .filterInput{
+    padding: 8px;
 }
 
 .filterInput select{
@@ -509,7 +513,6 @@ form#cud{
 
 .filterInput{
     background-color: rgba(238, 238, 221, 0.5);
-    padding: auto;
 }
 
 .resultRow>*:last-child{
