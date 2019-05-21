@@ -1,6 +1,6 @@
 <div id="header">
     <div class="nav">
-        <div id="logo">產品銷售管理系統</div>
+        <div id="logo"><a href="<?php echo getRootR($contentDir,$dir);?>index.php">產品銷售管理系統</a></div>
         <?php
             if(!empty($_SESSION['login'])){
         ?>
