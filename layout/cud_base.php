@@ -5,7 +5,7 @@
     include_once "../common/session.php";
     $action=['c'=>"add",'u'=>"edit",'d'=>"delete"];
     $labels=[$action['c']=>'新增',$action['u']=>'編輯',$action['d']=>'刪除'];
-    $bodyJS=["cancel.js"];
+    $bodyJS=["cancel.js","zhJustified.js"];
     $colKey=array_keys($col);
     $colName=array_values($col);
     $sql= new sql($table);

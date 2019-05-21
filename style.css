@@ -219,7 +219,6 @@ input[type='text'], input[type='password'], input[type='number'] {
 }
 
 .inputRow .label {
-    width: 100px;
     color: black;
     text-align: left;
 }
@@ -438,10 +437,6 @@ form#cud{
 
 .pgNav a{
     color: #1a4718;
-}
-
-#cud.inputBox .inputRow .label{
-    width: 150px;
 }
 
 #cud.inputBox .inputRow input{

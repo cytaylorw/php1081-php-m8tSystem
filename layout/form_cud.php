@@ -11,7 +11,7 @@
         ?>
 
         <div id="<?=$ck?>" class="inputRow">
-            <div class="label"><?php echo $col[$ck]?>：</div>
+            <div class="label"><span class="zhJustified"><?php echo $col[$ck]?></span>：</div>
             <input type="<?=$types[$ck]?>" name="<?=$ck?>" 
                 <?php 
                     if(!empty($_SESSION[$table.'_cud_info'][$col[$ck]]))

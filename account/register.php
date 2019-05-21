@@ -8,6 +8,7 @@
     $col=array_merge($col1,$col2);;
     $inputLabels=['eid'=>"員工編號",'ename'=>"姓名","username"=>'帳號',"password"=>'密碼'];
     $submitLabel='註冊';
+    $bodyJS=["zhJustified.js"];
     
     $pgName='註冊帳號';
     if(!empty($_POST)){
