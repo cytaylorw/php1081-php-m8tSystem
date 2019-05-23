@@ -36,5 +36,5 @@
 ?>
 
 <?php 
-include_once getDirR("layout",$contentDir,$dir)."base.php";
+include_once getDirR("layout")."base.php";
 ?>

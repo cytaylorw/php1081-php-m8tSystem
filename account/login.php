@@ -43,9 +43,9 @@
         }
     }
 
-    if(!empty($_SESSION['login']) ) header("location:".getRootR($contentDir,$dir)."index.php");
+    if(!empty($_SESSION['login']) ) header("location:".getRootR()."index.php");
 
 ?>
 <?php 
-include_once getDirR("layout",$contentDir,$dir)."base.php"; 
+include_once getDirR("layout")."base.php"; 
 ?>
