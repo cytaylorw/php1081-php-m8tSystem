@@ -16,10 +16,34 @@
             $this->table = $table;
         }
 
-        public function dbconnect($host="localhost", $user="root", $password="", $db="qdb"){
+        public function dbconnect($db="qdb",$host="localhost", $user="root", $password=""){
+            if(isset($_COOKIE["dbconfig"])){
+                $dbconfig=unserialize($_COOKIE["dbconfig"]);
+                if(isset($dbconfig["dbhost"])){
+                    $host=$dbconfig["dbhost"];
+                    echo $host;
+                }
+                if(isset($dbconfig["dbuser"])){
+                    $user=$dbconfig["dbuser"];
+                    echo $user;
+                }
+                if(isset($dbconfig["dbpassword"])){
+                    $password=$dbconfig["dbpassword"];
+                    echo $password;
+                }
+                if(isset($dbconfig["dbname"])){
+                    $db=$dbconfig["dbname"];
+                    echo $db;
+                }
+            }
             $dsn="mysql:host=$host;charset=utf8;dbname=$db";
-            $this->pdo= new PDO($dsn,$user,$password);
-            return $this;
+            try{
+                $this->pdo= new PDO($dsn,$user,$password);
+                return $this;
+            }catch(PDOException $e){
+                return false;
+            }
+            
         }
 
         public function buildSelect(){
@@ -129,4 +153,30 @@
             $array[$col]=$value;
         }  
         return $array; 
-    } 
+    }
+
+    function testPDO($value){
+        $sql= new sql("user");
+        if(!empty($value["dbname"])){
+            $db=$value["dbname"];
+        }else{
+            $db="qdb";
+        }
+        if(!empty($value["dbhost"])){
+            $host=$value["dbhost"];
+        }else{
+            $host="localhost";
+        }
+        if(!empty($value["dbuser"])){
+            $user=$value["dbuser"];
+        }else{
+            $user="root";
+        }
+        if(!empty($value["dbpassword"])){
+            $password=$value["dbpassword"];
+        }else{
+            $password="";
+        }
+        return ($sql->dbconnect($db,$host,$user,$password))?true:false;
+    }
+?>

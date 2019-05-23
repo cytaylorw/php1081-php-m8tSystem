@@ -39,6 +39,8 @@
                 include_once getDirR("layout")."form1.php";
             }else if(in_array($file,$reportPg)){
                 include_once getDirR("layout")."report.php";
+            }else if($file == "dbconfig.php"){
+                include_once getDirR("layout")."formdb.php";
             }
         ?>
 
