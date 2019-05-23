@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2019-05-06 15:39:50
+-- 產生時間： 2019-05-23 09:38:26
 -- 伺服器版本： 10.1.38-MariaDB
 -- PHP 版本： 7.3.3
 
@@ -42,7 +42,10 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `password`, `eid`) VALUES
 (1, 'test', 'test', 9999),
 (5, 'test1', 'test1', 1),
-(6, 'admin', 'admin', 0);
+(6, 'admin', 'admin', 0),
+(7, 'test2', 'test2', 3),
+(8, 'test3', 'test3', 4),
+(9, 'test4', 'test4', 5);
 
 --
 -- 已傾印資料表的索引
@@ -63,7 +66,7 @@ ALTER TABLE `user`
 -- 使用資料表自動增長(AUTO_INCREMENT) `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
