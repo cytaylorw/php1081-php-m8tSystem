@@ -7,6 +7,7 @@
     $inputLabels=["dbname"=>'DB Name',"dbhost"=>'Host',"dbport"=>'Port',"dbuser"=>'User',"dbpassword"=>'Password'];
     $submitLabel='Submit';
     $clearLabel='Set to Default';
+    $enableConfig=true;
     
     
 
@@ -17,7 +18,7 @@
                 if(!empty($_POST[$c])) $value[$c]=$_POST[$c];
             }
             if(testPDO($value)){
-                setcookie("dbconfig",serialize($value),time() + 86400, '/');
+                if($enableConfig)setcookie("dbconfig",serialize($value),time() + 86400, '/');
                 header("location:$file?status=success");
             }else{
                 header("location:$file?status=failed");
