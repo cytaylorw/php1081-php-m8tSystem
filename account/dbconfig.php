@@ -3,8 +3,8 @@
     include_once "../common/dir.php";
 
     $pgName='DB暫存設定';
-    $col=["dbname","dbhost","dbuser","dbpassword"];
-    $inputLabels=["dbname"=>'DB Name',"dbhost"=>'Host',"dbuser"=>'User',"dbpassword"=>'Password'];
+    $col=["dbname","dbhost","dbport","dbuser","dbpassword"];
+    $inputLabels=["dbname"=>'DB Name',"dbhost"=>'Host',"dbport"=>'Port',"dbuser"=>'User',"dbpassword"=>'Password'];
     $submitLabel='Submit';
     $clearLabel='Set to Default';
     

@@ -16,27 +16,30 @@
             $this->table = $table;
         }
 
-        public function dbconnect($db="qdb",$host="localhost", $user="root", $password=""){
+        public function dbconnect($db="qdb",$host="localhost",$port=null, $user="root", $password=""){
             if(isset($_COOKIE["dbconfig"])){
                 $dbconfig=unserialize($_COOKIE["dbconfig"]);
                 if(isset($dbconfig["dbhost"])){
                     $host=$dbconfig["dbhost"];
-                    echo $host;
+                }
+                if(isset($dbconfig["dbport"])){
+                    $port=$dbconfig["dbport"];
                 }
                 if(isset($dbconfig["dbuser"])){
                     $user=$dbconfig["dbuser"];
-                    echo $user;
                 }
                 if(isset($dbconfig["dbpassword"])){
                     $password=$dbconfig["dbpassword"];
-                    echo $password;
                 }
                 if(isset($dbconfig["dbname"])){
                     $db=$dbconfig["dbname"];
-                    echo $db;
                 }
             }
-            $dsn="mysql:host=$host;charset=utf8;dbname=$db";
+            if(empty($port)){
+                $dsn="mysql:host=$host;charset=utf8;dbname=$db";
+            }else{
+                $dsn="mysql:host=$host;port=$port;charset=utf8;dbname=$db";
+            }
             try{
                 $this->pdo= new PDO($dsn,$user,$password);
                 return $this;
@@ -162,6 +165,11 @@
         }else{
             $db="qdb";
         }
+        if(!empty($value["dbport"])){
+            $port=$value["dbport"];
+        }else{
+            $port=null;
+        }
         if(!empty($value["dbhost"])){
             $host=$value["dbhost"];
         }else{
@@ -177,6 +185,6 @@
         }else{
             $password="";
         }
-        return ($sql->dbconnect($db,$host,$user,$password))?true:false;
+        return ($sql->dbconnect($db,$host,$port,$user,$password))?true:false;
     }
 ?>
