@@ -9,20 +9,20 @@
             <div class="menu floatL">
                 <div class="menuBtn">銷售狀況</div>
                 <div class="menuList">
-                    <a href="<?php echo getDirR("report"); ?>product_report.php">產品銷售狀況</a>
-                    <a href="<?php echo getDirR("report"); ?>department_report.php">業務部銷售狀況</a>
+                    <a id="pReport" href="<?php echo getDirR("report"); ?>product_report.php">產品銷售狀況</a>
+                    <a id="dReport" href="<?php echo getDirR("report"); ?>department_report.php">業務部銷售狀況</a>
                 </div>
             </div>
             <div class="menu floatL">
                 <div class="menuBtn">管理</div>
                 <div class="menuList">
-                    <a href="<?php echo getDirR("manage"); ?>products.php">產品管理</a>
-                    <a href="<?php echo getDirR("manage"); ?>employees.php">員工管理</a>
-                    <a href="<?php echo getDirR("manage"); ?>customers.php">客戶管理</a>
+                    <a id="pManage" href="<?php echo getDirR("manage"); ?>products.php">產品管理</a>
+                    <a id="eManage" href="<?php echo getDirR("manage"); ?>employees.php">員工管理</a>
+                    <a id="cManage" href="<?php echo getDirR("manage"); ?>customers.php">客戶管理</a>
                     <?php
                         if($_SESSION['login']['eid']=="0"){                            
                     ?>
-                    <a href="<?php echo getDirR("manage"); ?>users.php">帳號管理</a>
+                    <a id="uManage" href="<?php echo getDirR("manage"); ?>users.php">帳號管理</a>
                     <?php                           
                         }
                     ?>

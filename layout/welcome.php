@@ -8,7 +8,5 @@
         </ul>
     </div>
     <div class="introWrap">
-        <div class="introBox"></div>
-        <div class="introBox"></div>
     </div>
 </div>

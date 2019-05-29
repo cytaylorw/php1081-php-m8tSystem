@@ -2,6 +2,7 @@
     include_once "./common/sql.php";
     include_once "./common/dir.php";
     include_once "./common/session.php";
+    $bodyJS=["intro.js"];
     
     $pgName='產品銷售管理系統';
     if(empty($_SESSION['login'])){
