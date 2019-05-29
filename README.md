@@ -37,9 +37,11 @@
     - 依報表頁面捲動距離調整表頭和選單按鈕。
 
 ## 成品
-系統架設在自己的NAS，使用的是NAS的Web Server，DB是NAS上docker版本。<br><https://demo.cytaylorw.idv.tw:60000>
+系統架設在自己的NAS，使用的是NAS的Web Server，DB是NAS上docker版本。
+- 連結：<https://demo.cytaylorw.idv.tw:60000>
 
 ## 使用說明
 - 預設帳號(密碼相同)： test(無效員工)、admin(管理者)、test1~test4(一般帳號)
 - 使用者必須是有效的員工註冊及登入。
 - DB暫存設定隱藏在頁面左上角。
+- 關閉線上的帳號刪除／修改。
