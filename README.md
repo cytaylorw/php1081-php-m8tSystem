@@ -35,6 +35,8 @@
     - 依單選按鈕狀態啟用／禁用表單上的刪除／修改按鈕。
     - 清空／還原表單輸入。
     - 依報表頁面捲動距離調整表頭和選單按鈕。
+    
+<div style="page-break-after: always;"></div>
 
 ## 成品
 系統架設在自己的NAS，使用的是NAS的Web Server，DB是NAS上docker版本。
