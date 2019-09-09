@@ -9,8 +9,10 @@
             foreach($col as $key => $c){
         ?>
         <div class="inputRow">
-            <div class="label"><span class="zhJustified"><?=$inputLabels[$key]?></span>：</div>
-            <input type="<?php echo ($key != 'password')?"text":"password";?>" name="<?=$key?>" value="<?php if(($key != 'password') && !empty($_POST[$key])) echo $_POST[$key]; ?>" required>
+            <div class="label">
+                <span class="zhJustified"><?=$inputLabels[$key]?></span>：
+                <input type="<?php echo ($key != 'password')?"text":"password";?>" name="<?=$key?>" value="<?php if(($key != 'password') && !empty($_POST[$key])) echo $_POST[$key]; ?>" required>
+            </div>
         </div>
         <?php
             }

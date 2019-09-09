@@ -11,15 +11,17 @@
         ?>
 
         <div id="<?=$ck?>" class="inputRow">
-            <div class="label"><span class="zhJustified"><?php echo $col[$ck]?></span>：</div>
-            <input type="<?=$types[$ck]?>" name="<?=$ck?>" 
-                <?php 
-                    if(!empty($_SESSION[$table.'_cud_info'][$col[$ck]]))
-                        echo " value='".$_SESSION[$table.'_cud_info'][$col[$ck]]."'"; 
-                    if($types[$ck] == "number") echo " min='0'";
-                    if($_GET['action'] == $action['d']) echo " disabled ";
-                ?> 
-            required>
+            <div class="label">
+                <span class="zhJustified"><?php echo $col[$ck]?></span>：
+                <input type="<?=$types[$ck]?>" name="<?=$ck?>" 
+                    <?php 
+                        if(!empty($_SESSION[$table.'_cud_info'][$col[$ck]]))
+                            echo " value='".$_SESSION[$table.'_cud_info'][$col[$ck]]."'"; 
+                        if($types[$ck] == "number") echo " min='0'";
+                        if($_GET['action'] == $action['d']) echo " disabled ";
+                    ?> 
+                required>
+            </div>
         </div>
         <?php
             }

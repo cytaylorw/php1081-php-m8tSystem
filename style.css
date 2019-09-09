@@ -241,6 +241,7 @@ input[type='text'], input[type='password'], input[type='number'] {
 }
 
 .inputRow .label {
+    width: 100%;
     color: black;
     text-align: left;
 }

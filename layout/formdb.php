@@ -9,8 +9,10 @@
             foreach($col as $key){
         ?>
         <div class="inputRow">
-            <div class="label"><?=$inputLabels[$key]?>: </div>
-            <input type="text" name="<?=$key?>" value="<?php if(!empty($dbconfig[$key])) echo $dbconfig[$key]; ?>">
+            <div class="label">
+                <?=$inputLabels[$key]?>: 
+                <input type="text" name="<?=$key?>" value="<?php if(!empty($dbconfig[$key])) echo $dbconfig[$key]; ?>">
+            </div>
         </div>
         <?php
             }
