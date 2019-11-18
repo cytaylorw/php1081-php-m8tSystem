@@ -41,7 +41,7 @@
 
 ## 成品
 系統架設在自己的NAS，使用的是NAS的Web Server，DB是NAS上docker版本。
-- 連結：<https://demo.cytaylorw.idv.tw:60000>
+- 連結：<https://demo.taylorw.tw:60000>
 
 ## 使用說明
 - 預設帳號(密碼相同)： test(無效員工)、admin(管理者)、test1~test4(一般帳號)
